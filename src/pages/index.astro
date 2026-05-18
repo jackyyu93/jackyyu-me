@@ -1,0 +1,404 @@
+---
+const meta = {
+  title: "Jacky Yu — Technical Program Manager",
+  description: "Technical Program Manager specializing in M&A security integration. Currently at Cloudflare.",
+  url: "https://jackyyu.me",
+};
+
+const lastUpdated = "May 2026";
+---
+
+<!doctype html>
+<html lang="en" class="dark scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={meta.description} />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={meta.title} />
+    <meta property="og:description" content={meta.description} />
+    <meta property="og:url" content={meta.url} />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={meta.title} />
+    <meta name="twitter:description" content={meta.description} />
+
+    <link rel="canonical" href={meta.url} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{meta.title}</title>
+
+    <style is:global>
+      @import "tailwindcss";
+
+      :root {
+        --serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+        --sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+        --mono: ui-monospace, SFMono-Regular, "SF Mono", Consolas, monospace;
+      }
+
+      html {
+        font-family: var(--sans);
+        font-feature-settings: "ss01", "ss02", "cv01", "cv03";
+      }
+
+      .font-serif {
+        font-family: var(--serif);
+        font-feature-settings: "kern", "liga", "calt";
+      }
+
+      .font-mono {
+        font-family: var(--mono);
+      }
+
+      ::selection {
+        background-color: rgb(251 191 36 / 0.3);
+        color: rgb(245 245 244);
+      }
+    </style>
+  </head>
+
+  <body class="bg-stone-950 text-stone-100 antialiased">
+    <!-- Sticky top nav -->
+    <nav
+      class="sticky top-0 z-50 backdrop-blur-md bg-stone-950/80 border-b border-stone-800/50"
+    >
+      <div
+        class="max-w-3xl mx-auto px-6 py-4 flex justify-between items-center text-xs tracking-widest uppercase"
+      >
+        <a href="#hero" class="text-stone-100 font-serif">Jacky Yu<em class="text-amber-400">.</em></a>
+        <div class="hidden md:flex gap-6 text-stone-400">
+          <a href="#about" class="hover:text-amber-400 transition">About</a>
+          <a href="#impact" class="hover:text-amber-400 transition">Impact</a>
+          <a href="#experience" class="hover:text-amber-400 transition">Experience</a>
+          <a href="#work" class="hover:text-amber-400 transition">Work</a>
+          <a href="#contact" class="hover:text-amber-400 transition">Contact</a>
+        </div>
+      </div>
+    </nav>
+
+    <main class="max-w-3xl mx-auto px-6 py-16 md:py-24 space-y-32 md:space-y-40">
+      <!-- HERO -->
+      <section id="hero" class="space-y-8">
+        <p class="text-xs tracking-[0.3em] text-stone-500 uppercase font-mono">
+          J01 · TECHNICAL PROGRAM MANAGER · AUSTIN, TEXAS
+        </p>
+        <h1
+          class="text-4xl md:text-6xl font-serif leading-[1.1] tracking-tight"
+        >
+          Driving security and operational excellence at the <em
+            class="italic text-amber-400">intersection</em
+          > of M&A, infrastructure, and trust.
+        </h1>
+        <p class="text-lg md:text-xl text-stone-300 max-w-2xl leading-relaxed">
+          [Your tagline here — 2-3 lines on what you do, who you do it for, and
+          what you're looking for next.]
+        </p>
+        <div class="flex flex-wrap gap-4 pt-4">
+          <a
+            href="#contact"
+            class="border border-stone-700 px-6 py-3 hover:bg-stone-900 hover:border-amber-400 transition text-sm tracking-wide"
+          >
+            Get in touch →
+          </a>
+          <a
+            href="#work"
+            class="text-stone-400 px-6 py-3 hover:text-amber-400 transition text-sm tracking-wide"
+          >
+            See work
+          </a>
+        </div>
+
+        <!-- Portrait placeholder -->
+        <div class="pt-12">
+          <div
+            class="w-48 h-48 md:w-64 md:h-64 bg-stone-900 border border-stone-800 flex items-center justify-center font-serif text-6xl text-stone-700"
+          >
+            JY
+          </div>
+          <p class="text-xs tracking-widest text-stone-500 uppercase mt-3 font-mono">
+            FIG. 01 / J. YU 2026
+          </p>
+        </div>
+      </section>
+
+      <!-- § 01 ABOUT -->
+      <section id="about" class="space-y-8 pt-12 border-t border-stone-800">
+        <p class="text-xs tracking-[0.3em] text-stone-500 uppercase font-mono">
+          § 01 — About
+        </p>
+        <h2 class="text-3xl md:text-4xl font-serif leading-tight">
+          [N] years of building <em class="italic text-amber-400">programs</em> that protect what matters.
+        </h2>
+        <div class="space-y-5 text-stone-300 leading-relaxed max-w-2xl">
+          <p class="text-stone-500 text-sm tracking-widest uppercase font-mono">Synopsis</p>
+          <p>
+            [Paragraph 1 — Who you are, your current role, and the kind of work you
+            specialize in. Mention specific domains: M&A security, infrastructure,
+            trust & safety, etc.]
+          </p>
+          <p>
+            [Paragraph 2 — What you've shipped. Reference real companies and
+            outcomes. e.g. "At Cloudflare, I lead security integration for M&A
+            deals, with X+ acquisitions completed and Y outcome metrics."]
+          </p>
+          <p>
+            [Paragraph 3 — What you care about as a TPM. What you're exploring
+            next. A line on what you do outside work to humanize.]
+          </p>
+        </div>
+      </section>
+
+      <!-- § 02 IMPACT -->
+      <section id="impact" class="space-y-8 pt-12 border-t border-stone-800">
+        <p class="text-xs tracking-[0.3em] text-stone-500 uppercase font-mono">
+          § 02 — Impact
+        </p>
+        <h2 class="text-3xl md:text-4xl font-serif leading-tight">
+          Numbers from the last <em class="italic text-amber-400">five years</em>.
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-stone-800">
+          <div class="bg-stone-950 p-8 space-y-3">
+            <p class="text-xs tracking-widest text-stone-500 uppercase font-mono">
+              [PROGRAM NAME] · [COMPANY]
+            </p>
+            <p class="text-5xl md:text-6xl font-serif italic text-amber-400">
+              XX→YY
+            </p>
+            <p class="text-stone-300 text-sm leading-relaxed">
+              [One-line context: what changed, what unblocked, what scale was
+              achieved.]
+            </p>
+          </div>
+          <div class="bg-stone-950 p-8 space-y-3">
+            <p class="text-xs tracking-widest text-stone-500 uppercase font-mono">
+              [PROGRAM NAME] · [COMPANY]
+            </p>
+            <p class="text-5xl md:text-6xl font-serif italic text-amber-400">
+              100%
+            </p>
+            <p class="text-stone-300 text-sm leading-relaxed">
+              [One-line context describing what this metric means and why it
+              matters.]
+            </p>
+          </div>
+          <div class="bg-stone-950 p-8 space-y-3">
+            <p class="text-xs tracking-widest text-stone-500 uppercase font-mono">
+              [PROGRAM NAME] · [COMPANY]
+            </p>
+            <p class="text-5xl md:text-6xl font-serif italic text-amber-400">
+              $XXM+
+            </p>
+            <p class="text-stone-300 text-sm leading-relaxed">
+              [One-line context describing the dollar value or business impact.]
+            </p>
+          </div>
+          <div class="bg-stone-950 p-8 space-y-3">
+            <p class="text-xs tracking-widest text-stone-500 uppercase font-mono">
+              [PROGRAM NAME] · [COMPANY]
+            </p>
+            <p class="text-5xl md:text-6xl font-serif italic text-amber-400">
+              [N]×
+            </p>
+            <p class="text-stone-300 text-sm leading-relaxed">
+              [One-line context — scale, throughput, time saved, etc.]
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- § 03 EXPERIENCE -->
+      <section id="experience" class="space-y-8 pt-12 border-t border-stone-800">
+        <p class="text-xs tracking-[0.3em] text-stone-500 uppercase font-mono">
+          § 03 — Experience
+        </p>
+        <h2 class="text-3xl md:text-4xl font-serif leading-tight">
+          A <em class="italic text-amber-400">chronology</em>.
+        </h2>
+        <div class="space-y-12">
+          <!-- Cloudflare -->
+          <div class="grid grid-cols-[60px_1fr] md:grid-cols-[80px_1fr] gap-4 md:gap-6">
+            <img
+              src="https://www.google.com/s2/favicons?sz=128&domain=cloudflare.com"
+              alt="Cloudflare logo"
+              class="w-12 h-12 md:w-16 md:h-16 rounded"
+              loading="lazy"
+            />
+            <div class="space-y-3">
+              <div class="flex justify-between items-baseline gap-4 flex-wrap">
+                <h3 class="text-xl md:text-2xl font-serif">Cloudflare</h3>
+                <p class="text-xs tracking-widest text-stone-500 font-mono whitespace-nowrap">
+                  [YEAR] — PRESENT
+                </p>
+              </div>
+              <p class="text-xs tracking-widest text-stone-500 uppercase font-mono">
+                Internet Infrastructure · Trust & Safety
+              </p>
+              <div class="space-y-2 text-sm pt-2">
+                <div class="flex justify-between gap-4 flex-wrap">
+                  <span class="text-stone-200"
+                    >Technical Program Manager · M&A Security</span
+                  >
+                  <span class="text-stone-500 font-mono text-xs whitespace-nowrap"
+                    >[YEAR] — Present</span
+                  >
+                </div>
+                <p class="text-stone-400 leading-relaxed">
+                  [What you do here — generalized 1-2 sentence summary. Avoid
+                  any internal program names, deal codenames, or non-public
+                  detail.]
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Previous Company -->
+          <div class="grid grid-cols-[60px_1fr] md:grid-cols-[80px_1fr] gap-4 md:gap-6">
+            <div
+              class="w-12 h-12 md:w-16 md:h-16 bg-stone-900 border border-stone-800 flex items-center justify-center text-stone-600 text-xs font-mono"
+            >
+              [LOGO]
+            </div>
+            <div class="space-y-3">
+              <div class="flex justify-between items-baseline gap-4 flex-wrap">
+                <h3 class="text-xl md:text-2xl font-serif">[Previous Company]</h3>
+                <p class="text-xs tracking-widest text-stone-500 font-mono whitespace-nowrap">
+                  [START] — [END]
+                </p>
+              </div>
+              <p class="text-xs tracking-widest text-stone-500 uppercase font-mono">
+                [Industry] · [Team / Domain]
+              </p>
+              <div class="space-y-2 text-sm pt-2">
+                <div class="flex justify-between gap-4 flex-wrap">
+                  <span class="text-stone-200">[Your role title]</span>
+                  <span class="text-stone-500 font-mono text-xs whitespace-nowrap"
+                    >[START] — [END]</span
+                  >
+                </div>
+                <p class="text-stone-400 leading-relaxed">
+                  [One-sentence summary of what you owned and outcome
+                  highlights.]
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Earlier Company -->
+          <div class="grid grid-cols-[60px_1fr] md:grid-cols-[80px_1fr] gap-4 md:gap-6">
+            <div
+              class="w-12 h-12 md:w-16 md:h-16 bg-stone-900 border border-stone-800 flex items-center justify-center text-stone-600 text-xs font-mono"
+            >
+              [LOGO]
+            </div>
+            <div class="space-y-3">
+              <div class="flex justify-between items-baseline gap-4 flex-wrap">
+                <h3 class="text-xl md:text-2xl font-serif">[Earlier Company]</h3>
+                <p class="text-xs tracking-widest text-stone-500 font-mono whitespace-nowrap">
+                  [START] — [END]
+                </p>
+              </div>
+              <p class="text-xs tracking-widest text-stone-500 uppercase font-mono">
+                [Industry] · [Team / Domain]
+              </p>
+              <div class="space-y-2 text-sm pt-2">
+                <div class="flex justify-between gap-4 flex-wrap">
+                  <span class="text-stone-200">[Your role title]</span>
+                  <span class="text-stone-500 font-mono text-xs whitespace-nowrap"
+                    >[START] — [END]</span
+                  >
+                </div>
+                <p class="text-stone-400 leading-relaxed">
+                  [One-sentence summary of what you owned and outcome
+                  highlights.]
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- § 04 PRINCIPLES -->
+      <section id="principles" class="space-y-8 pt-12 border-t border-stone-800">
+        <p class="text-xs tracking-[0.3em] text-stone-500 uppercase font-mono">
+          § 04 — Principles
+        </p>
+        <h2 class="text-3xl md:text-4xl font-serif leading-tight">
+          What I care about as a <em class="italic text-amber-400">program leader</em>.
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 pt-4">
+          <div class="space-y-3">
+            <p class="text-stone-500 font-serif italic text-xl">i.</p>
+            <h3 class="text-xl font-serif leading-snug">
+              [Principle one — 3-6 words.]
+            </h3>
+            <p class="text-stone-400 text-sm leading-relaxed">
+              [One-sentence elaboration on what this means and how it shows up
+              in your work.]
+            </p>
+          </div>
+          <div class="space-y-3">
+            <p class="text-stone-500 font-serif italic text-xl">ii.</p>
+            <h3 class="text-xl font-serif leading-snug">
+              [Principle two — 3-6 words.]
+            </h3>
+            <p class="text-stone-400 text-sm leading-relaxed">
+              [One-sentence elaboration on what this means and how it shows up
+              in your work.]
+            </p>
+          </div>
+          <div class="space-y-3">
+            <p class="text-stone-500 font-serif italic text-xl">iii.</p>
+            <h3 class="text-xl font-serif leading-snug">
+              [Principle three — 3-6 words.]
+            </h3>
+            <p class="text-stone-400 text-sm leading-relaxed">
+              [One-sentence elaboration on what this means and how it shows up
+              in your work.]
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- § 05 WORK / CASE STUDIES -->
+      <section id="work" class="space-y-8 pt-12 border-t border-stone-800">
+        <p class="text-xs tracking-[0.3em] text-stone-500 uppercase font-mono">
+          § 05 — Selected Work
+        </p>
+        <h2 class="text-3xl md:text-4xl font-serif leading-tight">
+          Programs I've <em class="italic text-amber-400">shipped</em>.
+        </h2>
+        <div class="space-y-6 pt-4">
+          <div class="border border-stone-800 p-6 md:p-8 space-y-4 hover:border-stone-700 transition">
+            <p class="text-xs tracking-widest text-stone-500 uppercase font-mono">
+              CASE STUDY 01 · [DOMAIN]
+            </p>
+            <h3 class="text-xl md:text-2xl font-serif">[Case study title]</h3>
+            <div class="space-y-3 text-sm pt-2">
+              <div>
+                <span
+                  class="text-stone-500 uppercase tracking-widest text-xs font-mono"
+                  >Problem</span
+                >
+                <p class="text-stone-300 mt-1 leading-relaxed">
+                  [1-2 sentences describing the challenge.]
+                </p>
+              </div>
+              <div>
+                <span
+                  class="text-stone-500 uppercase tracking-widest text-xs font-mono"
+                  >Approach</span
+                >
+                <p class="text-stone-300 mt-1 leading-relaxed">
+                  [1-2 sentences on what you did and how you led the program.]
+                </p>
+              </div>
+              <div>
+                <span
+                  class="text-stone-500 uppercase tracking-widest text-xs font-mono"
+                  >Outcome</span
+                >
+                <p class="text-
