@@ -81,42 +81,17 @@ const lastUpdated = "May 2026";
     </nav>
 
     <main class="max-w-3xl mx-auto px-6 py-16 md:py-24 space-y-32 md:space-y-40">
-       <!-- HERO -->
-      <section id="hero" class="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_auto] gap-12 lg:gap-20 items-start">
-        <!-- Left: Text content -->
-        <div class="space-y-10 md:space-y-12 order-2 lg:order-1 max-w-xl">
-          <p class="text-xs tracking-[0.3em] text-stone-500 uppercase font-mono">
-            J01 · TECHNICAL PROGRAM MANAGER · AUSTIN, TEXAS
-          </p>
-          <h1
-            class="text-4xl md:text-5xl lg:text-[3.5rem] font-serif leading-[1.05] tracking-tight"
-          >
-            Delivering impact <br class="hidden sm:block" />at the <em
-              class="italic text-amber-400">crossroads</em
-            > <br class="hidden sm:block" />of AI, automation <br class="hidden sm:block" />&amp; operations.
-          </h1>
-          <p class="text-base md:text-lg text-stone-300 leading-relaxed font-mono">
-            Force multiplier masquerading as a Technical Program Manager. 8+ years bootstrapping new functions, integrating AI acquisitions, and turning chaos into compounding momentum. Currently at Cloudflare. Actively exploring what&rsquo;s next.
-          </p>
-          <div class="flex flex-wrap gap-4 pt-4">
-            <a
-              href="#contact"
-              class="bg-stone-100 text-stone-950 px-6 py-3 hover:bg-amber-400 transition text-sm tracking-wide font-mono"
-            >
-              Get in touch →
-            </a>
-            <a
-              href="#work"
-              class="border border-stone-700 text-stone-200 px-6 py-3 hover:border-amber-400 hover:text-amber-400 transition text-sm tracking-wide font-mono"
-            >
-              Where I&rsquo;ve worked
-            </a>
-          </div>
-        </div>
+      <!-- HERO -->
+      <section id="hero" class="space-y-10 md:space-y-12">
+        <!-- Manifest line - never wraps -->
+        <p class="text-xs tracking-[0.3em] text-stone-500 uppercase font-mono whitespace-nowrap overflow-x-auto">
+          J01 · TECHNICAL PROGRAM MANAGER · AUSTIN, TEXAS
+        </p>
 
-        <!-- Right: Portrait -->
-        <div class="order-1 lg:order-2 relative w-full lg:w-auto flex justify-center lg:justify-end">
-          <div class="relative w-full max-w-md lg:w-[26rem] lg:max-w-none">
+        <!-- Floating portrait + flowing text -->
+        <div class="lg:clearfix">
+          <!-- Portrait floats right on desktop, stacks above on mobile -->
+          <div class="relative mb-8 lg:mb-4 lg:float-right lg:ml-12 lg:w-[24rem] w-full max-w-sm mx-auto lg:mx-0">
             <img
               src="/me.jpeg"
               alt="Jacky Yu"
@@ -126,6 +101,36 @@ const lastUpdated = "May 2026";
             <div class="absolute bottom-4 left-5 right-5 flex justify-between items-baseline text-xs tracking-widest uppercase font-mono pointer-events-none">
               <span class="text-stone-200">FIG. 01 / J. YU</span>
               <span class="text-amber-400">2026</span>
+            </div>
+          </div>
+
+          <!-- Headline + tagline + CTAs: text flows around floated portrait -->
+          <div class="space-y-8 md:space-y-10">
+            <h1
+              class="text-4xl md:text-5xl lg:text-[3.5rem] font-serif leading-[1.05] tracking-tight"
+            >
+              Delivering impact at the <em
+                class="italic text-amber-400">crossroads</em
+              > of AI, automation &amp; operations.
+            </h1>
+
+            <p class="text-base md:text-lg text-stone-300 leading-relaxed font-mono">
+              Force multiplier masquerading as a Technical Program Manager. 8+ years bootstrapping new functions, integrating AI acquisitions, and turning chaos into compounding momentum. Currently at Cloudflare. Actively exploring what&rsquo;s next.
+            </p>
+
+            <div class="flex flex-wrap gap-4 pt-2">
+              <a
+                href="#contact"
+                class="bg-stone-100 text-stone-950 px-6 py-3 hover:bg-amber-400 transition text-sm tracking-wide font-mono"
+              >
+                Get in touch →
+              </a>
+              <a
+                href="#work"
+                class="border border-stone-700 text-stone-200 px-6 py-3 hover:border-amber-400 hover:text-amber-400 transition text-sm tracking-wide font-mono"
+              >
+                Where I&rsquo;ve worked
+              </a>
             </div>
           </div>
         </div>
