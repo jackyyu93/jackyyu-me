@@ -81,47 +81,51 @@ const lastUpdated = "May 2026";
     </nav>
 
     <main class="max-w-3xl mx-auto px-6 py-16 md:py-24 space-y-32 md:space-y-40">
-      <!-- HERO -->
-      <section id="hero" class="space-y-8">
-        <p class="text-xs tracking-[0.3em] text-stone-500 uppercase font-mono">
-          J01 · TECHNICAL PROGRAM MANAGER · AUSTIN, TEXAS
-        </p>
-        <h1
-          class="text-4xl md:text-6xl font-serif leading-[1.1] tracking-tight"
-        >
-          Delivering impact at the <em
-            class="italic text-amber-400">crossroads</em
-          > of AI, automation &amp; operations.
-        </h1>
-        <p class="text-lg md:text-xl text-stone-300 max-w-2xl leading-relaxed">
-          Force multiplier masquerading as a Technical Program Manager. 8+ years bootstrapping new functions, integrating AI acquisitions, and turning chaos into compounding momentum. Currently at Cloudflare. Actively exploring what&rsquo;s next.
-        </p>
-        <div class="flex flex-wrap gap-4 pt-4">
-          <a
-            href="#contact"
-            class="border border-stone-700 px-6 py-3 hover:bg-stone-900 hover:border-amber-400 transition text-sm tracking-wide"
+           <!-- HERO -->
+      <section id="hero" class="grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-12 lg:gap-16 items-start">
+        <!-- Left: Text content -->
+        <div class="space-y-8 order-2 lg:order-1">
+          <p class="text-xs tracking-[0.3em] text-stone-500 uppercase font-mono">
+            J01 · TECHNICAL PROGRAM MANAGER · AUSTIN, TEXAS
+          </p>
+          <h1
+            class="text-4xl md:text-5xl lg:text-6xl font-serif leading-[1.1] tracking-tight"
           >
-            Get in touch →
-          </a>
-          <a
-            href="#work"
-            class="text-stone-400 px-6 py-3 hover:text-amber-400 transition text-sm tracking-wide"
-          >
-            See work
-          </a>
+            Delivering impact at the <em
+              class="italic text-amber-400">crossroads</em
+            > of AI, automation &amp; operations.
+          </h1>
+          <p class="text-lg md:text-xl text-stone-300 max-w-2xl leading-relaxed">
+            Force multiplier masquerading as a Technical Program Manager. 8+ years bootstrapping new functions, integrating AI acquisitions, and turning chaos into compounding momentum. Currently at Cloudflare. Actively exploring what&rsquo;s next.
+          </p>
+          <div class="flex flex-wrap gap-4 pt-4">
+            <a
+              href="#contact"
+              class="border border-stone-700 px-6 py-3 hover:bg-stone-900 hover:border-amber-400 transition text-sm tracking-wide"
+            >
+              Get in touch →
+            </a>
+            <a
+              href="#work"
+              class="text-stone-400 px-6 py-3 hover:text-amber-400 transition text-sm tracking-wide"
+            >
+              See work
+            </a>
+          </div>
         </div>
 
-        <!-- Portrait -->
-        <div class="pt-12">
+        <!-- Right: Portrait -->
+        <div class="order-1 lg:order-2 relative">
           <img
             src="/me.jpeg"
             alt="Jacky Yu"
-            class="w-48 h-48 md:w-64 md:h-64 object-cover border border-stone-800 grayscale hover:grayscale-0 transition-all duration-500"
+            class="w-full max-w-sm lg:w-[28rem] lg:max-w-none aspect-square object-cover rounded-md border border-stone-800 grayscale hover:grayscale-0 transition-all duration-500"
             loading="eager"
           />
-          <p class="text-xs tracking-widest text-stone-500 uppercase mt-3 font-mono">
-            FIG. 01 / J. YU 2026
-          </p>
+          <div class="absolute bottom-3 left-4 right-4 flex justify-between items-baseline text-xs tracking-widest uppercase font-mono pointer-events-none">
+            <span class="text-stone-300/90">FIG. 01 / J. YU</span>
+            <span class="text-amber-400/90">2026</span>
+          </div>
         </div>
       </section>
 
