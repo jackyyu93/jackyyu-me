@@ -83,8 +83,8 @@ const lastUpdated = "May 2026";
     <main class="max-w-3xl mx-auto px-6 py-16 md:py-24 space-y-32 md:space-y-40">
       <!-- HERO -->
       <section id="hero" class="space-y-10 md:space-y-12">
-        <!-- Manifest line - never wraps -->
-        <p class="text-xs tracking-[0.3em] text-stone-500 uppercase font-mono whitespace-nowrap overflow-x-auto">
+        <!-- Manifest line - never wraps, larger -->
+        <p class="text-sm md:text-base tracking-[0.3em] text-stone-500 uppercase font-mono whitespace-nowrap overflow-x-auto">
           J01 · TECHNICAL PROGRAM MANAGER · AUSTIN, TEXAS
         </p>
 
@@ -95,12 +95,12 @@ const lastUpdated = "May 2026";
             <img
               src="/me.jpeg"
               alt="Jacky Yu"
-              class="w-full aspect-square object-cover rounded-lg border border-stone-800 grayscale hover:grayscale-0 transition-all duration-500"
+              class="w-full aspect-square object-cover rounded-lg border border-stone-800"
               loading="eager"
             />
-            <div class="absolute bottom-4 left-5 right-5 flex justify-between items-baseline text-xs tracking-widest uppercase font-mono pointer-events-none">
-              <span class="text-stone-200">FIG. 01 / J. YU</span>
-              <span class="text-amber-400">2026</span>
+            <div class="absolute top-4 left-5 right-5 flex justify-between items-baseline text-xs tracking-widest uppercase font-mono pointer-events-none">
+              <span class="text-stone-950 font-bold">FIG. 01 / J. YU</span>
+              <span class="text-stone-950 font-bold">2026</span>
             </div>
           </div>
 
@@ -109,13 +109,13 @@ const lastUpdated = "May 2026";
             <h1
               class="text-4xl md:text-5xl lg:text-[3.5rem] font-serif leading-[1.05] tracking-tight"
             >
-              Delivering impact at the <em
+              Delivering value at the <em
                 class="italic text-amber-400">crossroads</em
               > of AI, automation &amp; operations.
             </h1>
 
             <p class="text-base md:text-lg text-stone-300 leading-relaxed font-mono">
-              Force multiplier masquerading as a Technical Program Manager. 8+ years bootstrapping new functions, integrating AI acquisitions, and turning chaos into compounding momentum. Currently at Cloudflare. Actively exploring what&rsquo;s next.
+              Force multiplier and Technical Program Manager with 8+ years leading digital transformation, integrating AI acquisitions, and turning chaos into compounding momentum. Currently at Cloudflare.
             </p>
 
             <div class="flex flex-wrap gap-4 pt-2">
@@ -135,41 +135,32 @@ const lastUpdated = "May 2026";
           </div>
         </div>
       </section>
-
       <!-- § 01 ABOUT -->
-      <section id="about" class="space-y-8 pt-12 border-t border-stone-800">
-        <p class="text-xs tracking-[0.3em] text-stone-500 uppercase font-mono">
-          § 01 — About
-        </p>
-        <h2 class="text-3xl md:text-4xl font-serif leading-tight">
-          Eight years of turning complex <em class="italic text-amber-400">programs</em> into compounding outcomes.
-        </h2>
-        <div class="space-y-5 text-stone-300 leading-relaxed max-w-2xl">
-          <p class="text-stone-500 text-sm tracking-widest uppercase font-mono">Synopsis</p>
-          <p>
-            Force multiplier masquerading as a Technical Program Manager. I work at the
-            crossroads of AI, automation, and operations &mdash; translating ambiguity into
-            structure, and structure into shipped outcomes. Industrial Engineer by training,
-            which means I see every program as a system to be measured, refined, and
-            continually improved.
+      <section id="about" class="pt-12 border-t border-stone-800">
+        <div class="grid grid-cols-1 md:grid-cols-[12rem_1fr] gap-6 md:gap-12">
+          <!-- Left column: section label -->
+          <p class="text-xs tracking-[0.3em] text-stone-500 uppercase font-mono pt-2">
+            § 01 — About
           </p>
-          <p>
-            I&rsquo;m currently at Cloudflare, where I bootstrapped the Core Cyber AI
-            division and previously led security integration for cutting-edge AI
-            acquisitions. Before that, I drove enterprise digital transformation at
-            Straumann Group, ran capital projects across one of the fastest-growing energy
-            service territories at Atmos Energy, and started my career applying Lean
-            methodology to logistics operations at FedEx. The through-line: making complex
-            systems work better than the day before.
-          </p>
-          <p>
-            Outside of work, I spend time with my best friend and wife, serving at the beck
-            and call of our golden, and filling my days with fishing, woodworking, cooking,
-            camping, and learning whatever&rsquo;s next.
-          </p>
+          <!-- Right column: heading + content -->
+          <div class="space-y-8">
+            <h2 class="text-3xl md:text-4xl lg:text-5xl font-serif leading-tight">
+              Eight years of turning complex <em class="italic text-amber-400">programs</em> into compounding outcomes.
+            </h2>
+            <div class="space-y-5 text-stone-300 leading-relaxed">
+              <p>
+                I&rsquo;m a Force Multiplier and Technical Program Manager working at the intersection of AI, automation &amp; operations. My 8+ years of experience includes integrating cutting edge AI acquisitions and bootstrapping the Core Cyber AI division at Cloudflare, pioneering digital transformation at Straumann Group, and overhauling operational excellence at FedEx. I previously led a life as an Industrial Engineer where I leaned into Lean, specializing in always improving and continually getting better.
+              </p>
+              <p>
+                A few things I care about deeply: fostering great relationships and building high performing teams, seeking to understand the &ldquo;Why&rdquo; to drive the &ldquo;How,&rdquo; and moving fast in environments where clarity and outcomes are more valuable than process. I&rsquo;m inherently tool agnostic, which has allowed me to not just use tools but to utilize them. As AI transforms the digital landscape, I focus my efforts on how to deliver value in an era where the baseline capabilities of software are changing quickly.
+              </p>
+              <p>
+                Outside of work I spend time with my best friend &amp; wife, serving at the beck and call of our golden, and filling my days with fishing, woodworking, cooking, camping, and learning.
+              </p>
+            </div>
+          </div>
         </div>
       </section>
-
       <!-- § 02 IMPACT -->
       <section id="impact" class="space-y-8 pt-12 border-t border-stone-800">
         <p class="text-xs tracking-[0.3em] text-stone-500 uppercase font-mono">
@@ -232,15 +223,16 @@ const lastUpdated = "May 2026";
           </div>
         </div>
       </section>
-
       <!-- § 03 EXPERIENCE -->
-      <section id="experience" class="space-y-8 pt-12 border-t border-stone-800">
-        <p class="text-xs tracking-[0.3em] text-stone-500 uppercase font-mono">
-          § 03 — Experience
-        </p>
-        <h2 class="text-3xl md:text-4xl font-serif leading-tight">
-          A <em class="italic text-amber-400">chronology</em>.
-        </h2>
+      <section id="experience" class="pt-12 border-t border-stone-800">
+        <div class="grid grid-cols-1 md:grid-cols-[12rem_1fr] gap-6 md:gap-12 mb-10">
+          <p class="text-xs tracking-[0.3em] text-stone-500 uppercase font-mono pt-2">
+            § 03 — Experience
+          </p>
+          <h2 class="text-3xl md:text-4xl lg:text-5xl font-serif leading-tight">
+            A <em class="italic text-amber-400">chronology</em>.
+          </h2>
+        </div>
         <div class="space-y-12">
           <!-- Cloudflare (two nested roles) -->
           <div class="grid grid-cols-[60px_1fr] md:grid-cols-[80px_1fr] gap-4 md:gap-6">
@@ -261,37 +253,22 @@ const lastUpdated = "May 2026";
                 Internet Infrastructure · Cybersecurity
               </p>
 
-              <div class="space-y-4 text-sm pt-2">
-                <div>
-                  <div class="flex justify-between gap-4 flex-wrap">
-                    <span class="text-stone-200"
-                      >Technical Program Manager · Core Cyber AI</span
-                    >
-                    <span class="text-stone-500 font-mono text-xs whitespace-nowrap"
-                      >2026 — Present</span
-                    >
-                  </div>
-                  <p class="text-stone-400 leading-relaxed mt-1">
-                    Bootstrapped the Core Cyber AI division, building the
-                    program foundation for AI-native security at internet
-                    scale.
-                  </p>
+              <div class="space-y-3 text-sm pt-2">
+                <div class="flex justify-between gap-4 flex-wrap">
+                  <span class="text-stone-200"
+                    >Technical Program Manager · Core Cyber AI</span
+                  >
+                  <span class="text-stone-500 font-mono text-xs whitespace-nowrap"
+                    >2026 — Present</span
+                  >
                 </div>
-
-                <div>
-                  <div class="flex justify-between gap-4 flex-wrap">
-                    <span class="text-stone-200"
-                      >Technical Program Manager · M&amp;A Security</span
-                    >
-                    <span class="text-stone-500 font-mono text-xs whitespace-nowrap"
-                      >2025 — 2026</span
-                    >
-                  </div>
-                  <p class="text-stone-400 leading-relaxed mt-1">
-                    Led security integration for cutting-edge AI acquisitions,
-                    onboarding new teams and capabilities into Cloudflare&rsquo;s
-                    security perimeter.
-                  </p>
+                <div class="flex justify-between gap-4 flex-wrap">
+                  <span class="text-stone-200"
+                    >Technical Program Manager · M&amp;A Security</span
+                  >
+                  <span class="text-stone-500 font-mono text-xs whitespace-nowrap"
+                    >2025 — 2026</span
+                  >
                 </div>
               </div>
             </div>
@@ -315,15 +292,10 @@ const lastUpdated = "May 2026";
               <p class="text-xs tracking-widest text-stone-500 uppercase font-mono">
                 HealthTech · Medical Devices
               </p>
-              <div class="space-y-1 text-sm pt-2">
+              <div class="text-sm pt-2">
                 <span class="text-stone-200"
                   >Program Manager · Digital Transformation</span
                 >
-                <p class="text-stone-400 leading-relaxed">
-                  Drove enterprise digital transformation programs across the
-                  global organization, modernizing operations and unlocking new
-                  capabilities at scale.
-                </p>
               </div>
             </div>
           </div>
@@ -346,15 +318,10 @@ const lastUpdated = "May 2026";
               <p class="text-xs tracking-widest text-stone-500 uppercase font-mono">
                 Energy · Engineering, Procurement &amp; Construction
               </p>
-              <div class="space-y-1 text-sm pt-2">
+              <div class="text-sm pt-2">
                 <span class="text-stone-200"
                   >Project Manager · Capital Projects</span
                 >
-                <p class="text-stone-400 leading-relaxed">
-                  Led capital project execution across one of the fastest-growing
-                  service territories, coordinating engineering, procurement, and
-                  construction at scale.
-                </p>
               </div>
             </div>
           </div>
@@ -377,30 +344,26 @@ const lastUpdated = "May 2026";
               <p class="text-xs tracking-widest text-stone-500 uppercase font-mono">
                 Logistics · Supply Chain
               </p>
-              <div class="space-y-1 text-sm pt-2">
+              <div class="text-sm pt-2">
                 <span class="text-stone-200"
                   >Industrial Engineer</span
                 >
-                <p class="text-stone-400 leading-relaxed">
-                  Overhauled operational excellence programs across logistics
-                  operations, applying Lean methodology to continuously improve
-                  throughput and efficiency.
-                </p>
               </div>
             </div>
           </div>
         </div>
-      </section> 
-
+      </section>
       <!-- § 04 PRINCIPLES -->
-      <section id="principles" class="space-y-8 pt-12 border-t border-stone-800">
-        <p class="text-xs tracking-[0.3em] text-stone-500 uppercase font-mono">
-          § 04 — Principles
-        </p>
-        <h2 class="text-3xl md:text-4xl font-serif leading-tight">
-          What I care about as a <em class="italic text-amber-400">program leader</em>.
-        </h2>
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 md:gap-5 pt-4">
+      <section id="principles" class="pt-12 border-t border-stone-800">
+        <div class="grid grid-cols-1 md:grid-cols-[12rem_1fr] gap-6 md:gap-12 mb-10">
+          <p class="text-xs tracking-[0.3em] text-stone-500 uppercase font-mono pt-2">
+            § 04 — Principles
+          </p>
+          <h2 class="text-3xl md:text-4xl lg:text-5xl font-serif leading-tight">
+            What I care about as a <em class="italic text-amber-400">program leader</em>.
+          </h2>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 md:gap-5">
           <div class="space-y-3">
             <p class="text-stone-500 font-serif italic text-xl">i.</p>
             <h3 class="text-lg font-serif leading-snug min-h-[3.5rem]">
@@ -446,8 +409,7 @@ const lastUpdated = "May 2026";
             </p>
           </div>
         </div>
-      </section>
-
+      </section> 
       <!-- § 05 CONTACT -->
       <section id="contact" class="space-y-8 pt-12 border-t border-stone-800">
         <p class="text-xs tracking-[0.3em] text-stone-500 uppercase font-mono">
