@@ -25,3 +25,7 @@ pnpm-debug.log*
 
 # Wrangler dev runtime
 .wrangler/
+
+# Image originals/backups - keep local only
+public/*.bak
+public/*.original.*
