@@ -62,16 +62,20 @@ const lastUpdated = "May 2026";
       /* Rotating word effect (hero) */
       .rotating-word {
         display: inline-block;
-        vertical-align: bottom;
-        overflow: hidden;
-        height: 1.05em;
+        vertical-align: baseline;
         position: relative;
-        min-width: 7em;
+        width: 7.5em;
+        height: 1em;
+        overflow: hidden;
         text-align: left;
       }
 
       .rotating-word__item {
-        display: inline-block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        line-height: 1;
+        white-space: nowrap;
         transition:
           transform 500ms cubic-bezier(0.5, 0, 0.5, 1),
           opacity 500ms ease;
@@ -83,8 +87,6 @@ const lastUpdated = "May 2026";
       }
 
       .rotating-word__item--enter {
-        position: absolute;
-        inset: 0;
         transform: translateY(110%);
         opacity: 0;
       }
