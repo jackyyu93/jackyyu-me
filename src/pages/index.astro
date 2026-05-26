@@ -21,11 +21,16 @@ const lastUpdated = "May 2026";
     <meta property="og:title" content={meta.title} />
     <meta property="og:description" content={meta.description} />
     <meta property="og:url" content={meta.url} />
+    <meta property="og:image" content="https://jackyyu.me/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Jacky Yu — Technical Program Manager" />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={meta.title} />
     <meta name="twitter:description" content={meta.description} />
+    <meta name="twitter:image" content="https://jackyyu.me/og-image.png" />
 
     <link rel="canonical" href={meta.url} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -38,11 +43,45 @@ const lastUpdated = "May 2026";
         --serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
         --sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
         --mono: ui-monospace, SFMono-Regular, "SF Mono", Consolas, monospace;
+
+        /* Dark theme colors (default) */
+        --bg: #0c0a09;
+        --bg-elevated: #1c1917;
+        --border: #292524;
+        --border-strong: #44403c;
+        --text: #f5f5f4;
+        --text-muted: #d6d3d1;
+        --text-soft: #a8a29e;
+        --text-faint: #78716c;
+        --accent: #fbbf24;
+      }
+
+      :root.light {
+        --bg: #fafaf9;
+        --bg-elevated: #f5f5f4;
+        --border: #e7e5e4;
+        --border-strong: #d6d3d1;
+        --text: #0c0a09;
+        --text-muted: #292524;
+        --text-soft: #57534e;
+        --text-faint: #78716c;
+        --accent: #b45309;
       }
 
       html {
         font-family: var(--sans);
         font-feature-settings: "ss01", "ss02", "cv01", "cv03";
+        scroll-behavior: smooth;
+        scroll-padding-top: 5rem;
+        background-color: var(--bg);
+        color: var(--text);
+        transition: background-color 300ms ease, color 300ms ease;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
       }
 
       .font-serif {
@@ -103,20 +142,47 @@ const lastUpdated = "May 2026";
     </style>
   </head>
 
-  <body class="bg-stone-950 text-stone-100 antialiased">
+  <body class="antialiased" style="background-color: var(--bg); color: var(--text);">
     <!-- Sticky top nav -->
     <nav
-      class="sticky top-0 z-50 backdrop-blur-md bg-stone-950/80 border-b border-stone-800/50"
+      class="sticky top-0 z-50 backdrop-blur-md border-b"
+      style="background-color: rgb(from var(--bg) r g b / 0.8); border-color: rgb(from var(--border) r g b / 0.5);"
     >
       <div
         class="max-w-5xl mx-auto px-6 py-4 flex justify-between items-center text-sm tracking-widest uppercase"
       >
-        <a href="#hero" class="text-stone-100 font-serif text-base">Jacky Yu<em class="text-amber-400">.</em></a>
-        <div class="hidden md:flex gap-7 text-stone-400">
-          <a href="#about" class="hover:text-amber-400 transition">About</a>
-          <a href="#impact" class="hover:text-amber-400 transition">Impact</a>
-          <a href="#experience" class="hover:text-amber-400 transition">Experience</a>
-          <a href="#contact" class="hover:text-amber-400 transition">Contact</a>
+        <a href="#hero" class="font-serif text-base" style="color: var(--text);">Jacky Yu<em style="color: var(--accent);">.</em></a>
+        <div class="hidden md:flex items-center gap-7" style="color: var(--text-soft);">
+          <a href="#about" class="hover:opacity-100 transition" style="--hover-color: var(--accent);" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text-soft)'">About</a>
+          <button
+            id="theme-toggle"
+            type="button"
+            aria-label="Toggle light/dark mode"
+            class="flex items-center justify-center w-8 h-8 rounded-full transition"
+            style="color: var(--text-soft);"
+            onmouseover="this.style.color='var(--accent)'"
+            onmouseout="this.style.color='var(--text-soft)'"
+          >
+            <!-- Sun icon (shown in dark mode) -->
+            <svg class="theme-icon-sun w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="4"></circle>
+              <path d="M12 2v2"></path>
+              <path d="M12 20v2"></path>
+              <path d="m4.93 4.93 1.41 1.41"></path>
+              <path d="m17.66 17.66 1.41 1.41"></path>
+              <path d="M2 12h2"></path>
+              <path d="M20 12h2"></path>
+              <path d="m6.34 17.66-1.41 1.41"></path>
+              <path d="m19.07 4.93-1.41 1.41"></path>
+            </svg>
+            <!-- Moon icon (shown in light mode) -->
+            <svg class="theme-icon-moon w-5 h-5 hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+            </svg>
+          </button>
+          <a href="#impact" class="hover:opacity-100 transition" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text-soft)'">Impact</a>
+          <a href="#experience" class="hover:opacity-100 transition" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text-soft)'">Experience</a>
+          <a href="#contact" class="hover:opacity-100 transition" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text-soft)'">Contact</a>
         </div>
       </div>
     </nav>
@@ -560,6 +626,45 @@ const lastUpdated = "May 2026";
     </footer>
 
     <script>
+      // Theme toggle: dark default, localStorage persistence, sun/moon icon swap
+      (function () {
+        const STORAGE_KEY = 'theme';
+        const root = document.documentElement;
+        const toggle = document.getElementById('theme-toggle');
+        const sunIcon = document.querySelector('.theme-icon-sun');
+        const moonIcon = document.querySelector('.theme-icon-moon');
+
+        function applyTheme(theme) {
+          if (theme === 'light') {
+            root.classList.add('light');
+            if (sunIcon) sunIcon.classList.add('hidden');
+            if (moonIcon) moonIcon.classList.remove('hidden');
+          } else {
+            root.classList.remove('light');
+            if (sunIcon) sunIcon.classList.remove('hidden');
+            if (moonIcon) moonIcon.classList.add('hidden');
+          }
+        }
+
+        // Read saved theme, default to dark
+        const saved = localStorage.getItem(STORAGE_KEY);
+        applyTheme(saved === 'light' ? 'light' : 'dark');
+
+        if (toggle) {
+          toggle.addEventListener('click', () => {
+            const isLight = root.classList.contains('light');
+            const next = isLight ? 'dark' : 'light';
+            applyTheme(next);
+            try {
+              localStorage.setItem(STORAGE_KEY, next);
+            } catch (e) {
+              // localStorage unavailable; theme will reset on next load, harmless
+            }
+          });
+        }
+      })();
+
+      // Rotating word effect (unchanged)
       (function () {
         const words = ['operations', 'engineering', 'enterprise', 'security', 'strategy'];
         const container = document.querySelector('.rotating-word');
@@ -579,7 +684,6 @@ const lastUpdated = "May 2026";
           );
           if (!current) return;
 
-          // Update the invisible measure word so container width matches new word
           if (measure) measure.textContent = words[idx];
 
           const next = document.createElement('span');
