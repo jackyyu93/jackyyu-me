@@ -36,6 +36,18 @@ const lastUpdated = "May 2026";
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{meta.title}</title>
 
+    <!-- Prevent flash of wrong theme on page load -->
+    <script is:inline>
+      (function () {
+        try {
+          var saved = localStorage.getItem('theme');
+          if (saved === 'light') {
+            document.documentElement.classList.add('light');
+          }
+        } catch (e) {}
+      })();
+    </script>
+
     <style is:global>
       @import "tailwindcss";
 
@@ -44,7 +56,7 @@ const lastUpdated = "May 2026";
         --sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
         --mono: ui-monospace, SFMono-Regular, "SF Mono", Consolas, monospace;
 
-        /* Dark theme colors (default) */
+        /* Dark theme (default) */
         --bg: #0c0a09;
         --bg-elevated: #1c1917;
         --border: #292524;
@@ -54,18 +66,24 @@ const lastUpdated = "May 2026";
         --text-soft: #a8a29e;
         --text-faint: #78716c;
         --accent: #fbbf24;
+        --accent-soft: rgb(251 191 36 / 0.12);
+        --cta-bg: #f5f5f4;
+        --cta-text: #0c0a09;
       }
 
       :root.light {
-        --bg: #fafaf9;
-        --bg-elevated: #f5f5f4;
-        --border: #e7e5e4;
-        --border-strong: #d6d3d1;
-        --text: #0c0a09;
-        --text-muted: #292524;
-        --text-soft: #57534e;
-        --text-faint: #78716c;
-        --accent: #b45309;
+        --bg: #ffffff;
+        --bg-elevated: #fafafa;
+        --border: #e5e5e5;
+        --border-strong: #d4d4d4;
+        --text: #0a0a0a;
+        --text-muted: #404040;
+        --text-soft: #525252;
+        --text-faint: #737373;
+        --accent: #d97706;
+        --accent-soft: rgb(217 119 6 / 0.10);
+        --cta-bg: #0a0a0a;
+        --cta-text: #fafafa;
       }
 
       html {
@@ -79,110 +97,153 @@ const lastUpdated = "May 2026";
       }
 
       @media (prefers-reduced-motion: reduce) {
-        html {
-          scroll-behavior: auto;
-        }
+        html { scroll-behavior: auto; }
       }
 
-      .font-serif {
-        font-family: var(--serif);
-        font-feature-settings: "kern", "liga", "calt";
-      }
+      .font-serif { font-family: var(--serif); font-feature-settings: "kern", "liga", "calt"; }
+      .font-mono { font-family: var(--mono); }
 
-      .font-mono {
+      ::selection { background-color: var(--accent-soft); color: var(--text); }
+
+      /* Nav */
+      .nav-bar {
+        background-color: rgb(from var(--bg) r g b / 0.85);
+        border-color: var(--border);
+        transition: background-color 300ms ease, border-color 300ms ease;
+      }
+      .nav-logo { color: var(--text); transition: color 200ms ease; }
+      .nav-logo:hover { color: var(--accent); }
+      .nav-accent { color: var(--accent); font-style: normal; }
+      .nav-link { color: var(--text-soft); transition: color 200ms ease; }
+      .nav-link:hover { color: var(--accent); }
+
+      /* CTAs */
+      .cta-primary, .cta-secondary {
+        display: inline-block;
+        padding: 0.75rem 1.5rem;
         font-family: var(--mono);
+        font-size: 0.875rem;
+        letter-spacing: 0.025em;
+        transition: background-color 200ms ease, color 200ms ease, border-color 200ms ease;
       }
+      .cta-primary { background-color: var(--cta-bg); color: var(--cta-text); }
+      .cta-primary:hover { background-color: var(--accent); color: var(--cta-text); }
+      .cta-secondary { border: 1px solid var(--border-strong); color: var(--text); }
+      .cta-secondary:hover { border-color: var(--accent); color: var(--accent); }
 
-      ::selection {
-        background-color: rgb(251 191 36 / 0.3);
-        color: rgb(245 245 244);
+      /* Theme toggle - pill slider */
+      .theme-toggle {
+        position: relative;
+        display: inline-flex;
+        width: 56px;
+        height: 28px;
+        border: 1px solid var(--border-strong);
+        border-radius: 999px;
+        background-color: var(--bg-elevated);
+        cursor: pointer;
+        transition: background-color 300ms ease, border-color 300ms ease;
+        padding: 0;
+        overflow: hidden;
+        flex-shrink: 0;
       }
+      .theme-toggle:hover { border-color: var(--accent); }
+      .theme-toggle__icon {
+        position: absolute;
+        top: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 22px;
+        height: 22px;
+        border-radius: 999px;
+        background-color: var(--accent);
+        color: var(--cta-text);
+        transition: left 300ms cubic-bezier(0.5, 0, 0.2, 1), opacity 200ms ease;
+        transform: translateY(-50%);
+      }
+      .theme-toggle__icon--sun { left: 2px; opacity: 1; }
+      .theme-toggle__icon--moon { left: 2px; opacity: 0; }
+      :root.light .theme-toggle__icon--sun { left: 30px; opacity: 0; }
+      :root.light .theme-toggle__icon--moon { left: 30px; opacity: 1; }
 
       /* Rotating word effect (hero) */
       .rotating-word {
         position: relative;
         display: inline-block;
         vertical-align: baseline;
-        overflow: visible; /* allow descenders to show */
+        overflow: visible;
       }
-
-      /* Invisible measure word: reserves width + establishes baseline */
-      .rotating-word__measure {
-        visibility: hidden;
-        white-space: nowrap;
-        display: inline-block;
-      }
-
-      /* Animated words overlay on top of the measure word, anchored at baseline */
+      .rotating-word__measure { visibility: hidden; white-space: nowrap; display: inline-block; }
       .rotating-word__item {
         position: absolute;
         left: 0;
         bottom: 0;
         white-space: nowrap;
-        transition:
-          transform 500ms cubic-bezier(0.5, 0, 0.5, 1),
-          opacity 500ms ease;
+        transition: transform 500ms cubic-bezier(0.5, 0, 0.5, 1), opacity 500ms ease;
       }
-
-      .rotating-word__item--exit {
-        transform: translateY(-100%);
-        opacity: 0;
-      }
-
-      .rotating-word__item--enter {
-        transform: translateY(100%);
-        opacity: 0;
-      }
-
+      .rotating-word__item--exit { transform: translateY(-100%); opacity: 0; }
+      .rotating-word__item--enter { transform: translateY(100%); opacity: 0; }
       @media (prefers-reduced-motion: reduce) {
-        .rotating-word__item {
-          transition: none;
-        }
+        .rotating-word__item { transition: none; }
       }
+
+      /* Theme-aware overrides for existing Tailwind stone/amber utility classes */
+      :root.light .text-stone-100 { color: var(--text) !important; }
+      :root.light .text-stone-200 { color: var(--text) !important; }
+      :root.light .text-stone-300 { color: var(--text-muted) !important; }
+      :root.light .text-stone-400 { color: var(--text-soft) !important; }
+      :root.light .text-stone-500 { color: var(--text-faint) !important; }
+      :root.light .text-stone-600 { color: var(--text-faint) !important; }
+      :root.light .text-stone-700 { color: var(--text-muted) !important; }
+      :root.light .border-stone-700 { border-color: var(--border-strong) !important; }
+      :root.light .border-stone-800 { border-color: var(--border) !important; }
+      :root.light .bg-stone-800 { background-color: var(--border) !important; }
+      :root.light .bg-stone-900 { background-color: var(--bg-elevated) !important; }
+      :root.light .bg-stone-950 { background-color: var(--bg) !important; }
+      :root.light .text-amber-400 { color: var(--accent) !important; }
+      :root.light .hover\:text-amber-400:hover { color: var(--accent) !important; }
+      :root.light .hover\:border-amber-400:hover { border-color: var(--accent) !important; }
+      :root.light .hover\:bg-amber-400:hover { background-color: var(--accent) !important; }
     </style>
   </head>
 
   <body class="antialiased" style="background-color: var(--bg); color: var(--text);">
     <!-- Sticky top nav -->
-    <nav
-      class="sticky top-0 z-50 backdrop-blur-md border-b"
-      style="background-color: rgb(from var(--bg) r g b / 0.8); border-color: rgb(from var(--border) r g b / 0.5);"
-    >
-      <div
-        class="max-w-5xl mx-auto px-6 py-4 flex justify-between items-center text-sm tracking-widest uppercase"
-      >
-        <a href="#hero" class="font-serif text-base" style="color: var(--text);">Jacky Yu<em style="color: var(--accent);">.</em></a>
-        <div class="hidden md:flex items-center gap-7" style="color: var(--text-soft);">
-          <a href="#about" class="hover:opacity-100 transition" style="--hover-color: var(--accent);" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text-soft)'">About</a>
+    <nav class="nav-bar sticky top-0 z-50 backdrop-blur-md border-b">
+      <div class="max-w-5xl mx-auto px-6 py-4 flex justify-between items-center text-sm tracking-widest uppercase">
+        <a href="#hero" class="nav-logo font-serif text-base">Jacky Yu<em class="nav-accent">.</em></a>
+        <div class="hidden md:flex items-center gap-7">
+          <a href="#about" class="nav-link">About</a>
+          <a href="#impact" class="nav-link">Impact</a>
+          <a href="#experience" class="nav-link">Experience</a>
+          <a href="#contact" class="nav-link">Contact</a>
+
+          <!-- Theme toggle: pill slider -->
           <button
             id="theme-toggle"
             type="button"
-            aria-label="Toggle light/dark mode"
-            class="flex items-center justify-center w-8 h-8 rounded-full transition"
-            style="color: var(--text-soft);"
-            onmouseover="this.style.color='var(--accent)'"
-            onmouseout="this.style.color='var(--text-soft)'"
+            aria-label="Toggle light and dark mode"
+            class="theme-toggle"
           >
-            <!-- Sun icon (shown in dark mode) -->
-            <svg class="theme-icon-sun w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="12" r="4"></circle>
-              <path d="M12 2v2"></path>
-              <path d="M12 20v2"></path>
-              <path d="m4.93 4.93 1.41 1.41"></path>
-              <path d="m17.66 17.66 1.41 1.41"></path>
-              <path d="M2 12h2"></path>
-              <path d="M20 12h2"></path>
-              <path d="m6.34 17.66-1.41 1.41"></path>
-              <path d="m19.07 4.93-1.41 1.41"></path>
-            </svg>
-            <!-- Moon icon (shown in light mode) -->
-            <svg class="theme-icon-moon w-5 h-5 hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
-            </svg>
+            <span class="theme-toggle__icon theme-toggle__icon--sun">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="4"></circle>
+                <path d="M12 2v2"></path>
+                <path d="M12 20v2"></path>
+                <path d="m4.93 4.93 1.41 1.41"></path>
+                <path d="m17.66 17.66 1.41 1.41"></path>
+                <path d="M2 12h2"></path>
+                <path d="M20 12h2"></path>
+                <path d="m6.34 17.66-1.41 1.41"></path>
+                <path d="m19.07 4.93-1.41 1.41"></path>
+              </svg>
+            </span>
+            <span class="theme-toggle__icon theme-toggle__icon--moon">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+              </svg>
+            </span>
           </button>
-          <a href="#impact" class="hover:opacity-100 transition" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text-soft)'">Impact</a>
-          <a href="#experience" class="hover:opacity-100 transition" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text-soft)'">Experience</a>
-          <a href="#contact" class="hover:opacity-100 transition" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text-soft)'">Contact</a>
         </div>
       </div>
     </nav>
@@ -190,14 +251,11 @@ const lastUpdated = "May 2026";
     <main class="max-w-5xl mx-auto px-6 py-16 md:py-24 space-y-32 md:space-y-40">
       <!-- HERO -->
       <section id="hero" class="space-y-10 md:space-y-12">
-        <!-- Manifest line - never wraps, larger -->
-        <p class="text-sm md:text-base tracking-[0.3em] text-stone-500 uppercase font-mono whitespace-nowrap overflow-x-auto">
+        <p class="text-sm md:text-base tracking-[0.3em] uppercase font-mono whitespace-nowrap overflow-x-auto" style="color: var(--text-faint);">
           J01 · TECHNICAL PROGRAM MANAGER · AUSTIN, TEXAS
         </p>
 
-        <!-- Floating portrait + flowing text -->
         <div class="lg:clearfix">
-          <!-- Portrait floats right on desktop, stacks above on mobile -->
           <div class="relative mb-8 lg:mb-4 lg:float-right lg:ml-12 lg:w-[24rem] w-full max-w-sm mx-auto lg:mx-0">
             <img
               src="/me.jpeg"
@@ -211,46 +269,32 @@ const lastUpdated = "May 2026";
             </div>
           </div>
 
-          <!-- Headline + tagline + CTAs: text flows around floated portrait -->
           <div class="space-y-8 md:space-y-10">
-            <h1
-              class="text-4xl md:text-5xl lg:text-[3.5rem] font-serif leading-[1.15] tracking-tight"
-            >
+            <h1 class="text-4xl md:text-5xl lg:text-[3.5rem] font-serif leading-[1.15] tracking-tight">
               <span class="block">Delivering value at</span>
               <span class="block">the crossroads of</span>
               <span class="block">AI, automation</span>
               <span class="block">&amp; <span class="rotating-word italic text-amber-400" aria-live="polite" aria-atomic="true"><span class="rotating-word__measure" aria-hidden="true">operations</span><span class="rotating-word__item">operations</span></span></span>
             </h1>
 
-            <p class="text-base md:text-lg text-stone-300 leading-relaxed font-mono">
+            <p class="text-base md:text-lg leading-relaxed font-mono" style="color: var(--text-muted);">
               Force multiplier and Technical Program Manager with 8+ years leading digital transformation, integrating AI acquisitions, and turning chaos into compounding momentum. Currently at Cloudflare.
             </p>
 
             <div class="flex flex-wrap gap-4 pt-2">
-              <a
-                href="#contact"
-                class="bg-stone-100 text-stone-950 px-6 py-3 hover:bg-amber-400 transition text-sm tracking-wide font-mono"
-              >
-                Get in touch →
-              </a>
-              <a
-                href="#experience"
-                class="border border-stone-700 text-stone-200 px-6 py-3 hover:border-amber-400 hover:text-amber-400 transition text-sm tracking-wide font-mono"
-              >
-                Where I&rsquo;ve worked
-              </a>
+              <a href="#contact" class="cta-primary">Get in touch →</a>
+              <a href="#experience" class="cta-secondary">Where I&rsquo;ve worked</a>
             </div>
           </div>
         </div>
       </section>
+
       <!-- § 01 ABOUT -->
       <section id="about" class="pt-12 border-t border-stone-800">
         <div class="grid grid-cols-1 md:grid-cols-[12rem_1fr] gap-6 md:gap-12">
-          <!-- Left column: section label -->
           <p class="text-xs tracking-[0.3em] text-stone-500 uppercase font-mono pt-2">
             § 01 — About
           </p>
-          <!-- Right column: heading + content -->
           <div class="space-y-8">
             <h2 class="text-3xl md:text-4xl lg:text-5xl font-serif leading-tight">
               Eight years of turning complex <em class="italic text-amber-400">programs</em> into compounding outcomes.
@@ -269,6 +313,7 @@ const lastUpdated = "May 2026";
           </div>
         </div>
       </section>
+
       <!-- § 02 IMPACT -->
       <section id="impact" class="pt-12 border-t border-stone-800">
         <div class="grid grid-cols-1 md:grid-cols-[12rem_1fr] gap-6 md:gap-12 mb-10">
@@ -280,59 +325,48 @@ const lastUpdated = "May 2026";
           </h2>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-stone-800">
-          <!-- Card 1: Core Cyber AI -->
           <div class="bg-stone-950 p-8 space-y-3">
             <p class="text-xs tracking-widest text-stone-500 uppercase font-mono">
               Core Cyber AI · Cloudflare
             </p>
-            <p class="text-5xl md:text-6xl font-serif italic text-amber-400">
-              97%
-            </p>
+            <p class="text-5xl md:text-6xl font-serif italic text-amber-400">97%</p>
             <p class="text-stone-300 text-sm leading-relaxed">
               Reduction in monthly AI related incidents. AI Governance institutionalized through thoughtful guard rails. Coding agents secured by default.
             </p>
           </div>
 
-          <!-- Card 2: M&A Security -->
           <div class="bg-stone-950 p-8 space-y-3">
             <p class="text-xs tracking-widest text-stone-500 uppercase font-mono">
               M&amp;A Security · Cloudflare
             </p>
-            <p class="text-5xl md:text-6xl font-serif italic text-amber-400">
-              $1.5B+
-            </p>
+            <p class="text-5xl md:text-6xl font-serif italic text-amber-400">$1.5B+</p>
             <p class="text-stone-300 text-sm leading-relaxed">
               AI acquisitions integrated into Cloudflare&rsquo;s security perimeter. 70% (8→3 months) timeline acceleration and 80% (740→150 hours) effort reduction.
             </p>
           </div>
 
-          <!-- Card 3: Digital Transformation -->
           <div class="bg-stone-950 p-8 space-y-3">
             <p class="text-xs tracking-widest text-stone-500 uppercase font-mono">
               Digital Transformation · Straumann Group
             </p>
-            <p class="text-5xl md:text-6xl font-serif italic text-amber-400">
-              V1.0
-            </p>
+            <p class="text-5xl md:text-6xl font-serif italic text-amber-400">V1.0</p>
             <p class="text-stone-300 text-sm leading-relaxed">
               Enabled virtual patient care for Dental providers through shipping flagship mobile app. 25,000+ downloads within 6 months.
             </p>
           </div>
 
-          <!-- Card 4: Capital Projects -->
           <div class="bg-stone-950 p-8 space-y-3">
             <p class="text-xs tracking-widest text-stone-500 uppercase font-mono">
               Capital Projects · Atmos Energy
             </p>
-            <p class="text-5xl md:text-6xl font-serif italic text-amber-400">
-              $80M
-            </p>
+            <p class="text-5xl md:text-6xl font-serif italic text-amber-400">$80M</p>
             <p class="text-stone-300 text-sm leading-relaxed">
               Capital portfolio executed as the company&rsquo;s first hybrid Project Manager x Engineer.
             </p>
           </div>
         </div>
       </section>
+
       <!-- § 03 EXPERIENCE -->
       <section id="experience" class="pt-12 border-t border-stone-800">
         <div class="grid grid-cols-1 md:grid-cols-[12rem_1fr] gap-6 md:gap-12 mb-10">
@@ -344,125 +378,73 @@ const lastUpdated = "May 2026";
           </h2>
         </div>
         <div class="space-y-12">
-          <!-- Cloudflare (two nested roles) -->
           <div class="grid grid-cols-[60px_1fr] md:grid-cols-[80px_1fr] gap-4 md:gap-6">
-            <img
-              src="/logos/cloudflare.png"
-              alt="Cloudflare logo"
-              class="w-12 h-12 md:w-16 md:h-16 rounded object-contain bg-white p-1"
-              loading="lazy"
-            />
+            <img src="/logos/cloudflare.png" alt="Cloudflare logo" class="w-12 h-12 md:w-16 md:h-16 rounded object-contain bg-white p-1" loading="lazy" />
             <div class="space-y-3">
               <div class="flex justify-between items-baseline gap-4 flex-wrap">
                 <h3 class="text-xl md:text-2xl font-serif">Cloudflare</h3>
-                <p class="text-xs tracking-widest text-stone-500 font-mono whitespace-nowrap">
-                  2025 — PRESENT
-                </p>
+                <p class="text-xs tracking-widest text-stone-500 font-mono whitespace-nowrap">2025 — PRESENT</p>
               </div>
               <p class="text-xs tracking-widest text-stone-500 uppercase font-mono">
                 Internet Infrastructure · Cybersecurity
               </p>
-
               <div class="space-y-3 text-sm pt-2">
                 <div class="flex justify-between gap-4 flex-wrap">
-                  <span class="text-stone-200"
-                    >Technical Program Manager · Core Cyber AI</span
-                  >
-                  <span class="text-stone-500 font-mono text-xs whitespace-nowrap"
-                    >2026 — Present</span
-                  >
+                  <span class="text-stone-200">Technical Program Manager · Core Cyber AI</span>
+                  <span class="text-stone-500 font-mono text-xs whitespace-nowrap">2026 — Present</span>
                 </div>
                 <div class="flex justify-between gap-4 flex-wrap">
-                  <span class="text-stone-200"
-                    >Technical Program Manager · M&amp;A Security</span
-                  >
-                  <span class="text-stone-500 font-mono text-xs whitespace-nowrap"
-                    >2025 — 2026</span
-                  >
+                  <span class="text-stone-200">Technical Program Manager · M&amp;A Security</span>
+                  <span class="text-stone-500 font-mono text-xs whitespace-nowrap">2025 — 2026</span>
                 </div>
               </div>
             </div>
           </div>
 
-          <!-- Straumann Group -->
           <div class="grid grid-cols-[60px_1fr] md:grid-cols-[80px_1fr] gap-4 md:gap-6">
-            <img
-              src="/logos/straumann.png"
-              alt="Straumann Group logo"
-              class="w-12 h-12 md:w-16 md:h-16 rounded object-contain bg-white p-1"
-              loading="lazy"
-            />
+            <img src="/logos/straumann.png" alt="Straumann Group logo" class="w-12 h-12 md:w-16 md:h-16 rounded object-contain bg-white p-1" loading="lazy" />
             <div class="space-y-3">
               <div class="flex justify-between items-baseline gap-4 flex-wrap">
                 <h3 class="text-xl md:text-2xl font-serif">Straumann Group</h3>
-                <p class="text-xs tracking-widest text-stone-500 font-mono whitespace-nowrap">
-                  2022 — 2025
-                </p>
+                <p class="text-xs tracking-widest text-stone-500 font-mono whitespace-nowrap">2022 — 2025</p>
               </div>
-              <p class="text-xs tracking-widest text-stone-500 uppercase font-mono">
-                HealthTech · Medical Devices
-              </p>
+              <p class="text-xs tracking-widest text-stone-500 uppercase font-mono">HealthTech · Medical Devices</p>
               <div class="text-sm pt-2">
-                <span class="text-stone-200"
-                  >Program Manager · Digital Transformation</span
-                >
+                <span class="text-stone-200">Program Manager · Digital Transformation</span>
               </div>
             </div>
           </div>
 
-          <!-- Atmos Energy -->
           <div class="grid grid-cols-[60px_1fr] md:grid-cols-[80px_1fr] gap-4 md:gap-6">
-            <img
-              src="/logos/atmos.png"
-              alt="Atmos Energy logo"
-              class="w-12 h-12 md:w-16 md:h-16 rounded object-contain bg-white p-1"
-              loading="lazy"
-            />
+            <img src="/logos/atmos.png" alt="Atmos Energy logo" class="w-12 h-12 md:w-16 md:h-16 rounded object-contain bg-white p-1" loading="lazy" />
             <div class="space-y-3">
               <div class="flex justify-between items-baseline gap-4 flex-wrap">
                 <h3 class="text-xl md:text-2xl font-serif">Atmos Energy</h3>
-                <p class="text-xs tracking-widest text-stone-500 font-mono whitespace-nowrap">
-                  2019 — 2022
-                </p>
+                <p class="text-xs tracking-widest text-stone-500 font-mono whitespace-nowrap">2019 — 2022</p>
               </div>
-              <p class="text-xs tracking-widest text-stone-500 uppercase font-mono">
-                Energy · Engineering, Procurement &amp; Construction
-              </p>
+              <p class="text-xs tracking-widest text-stone-500 uppercase font-mono">Energy · Engineering, Procurement &amp; Construction</p>
               <div class="text-sm pt-2">
-                <span class="text-stone-200"
-                  >Project Manager · Capital Projects</span
-                >
+                <span class="text-stone-200">Project Manager · Capital Projects</span>
               </div>
             </div>
           </div>
 
-          <!-- FedEx -->
           <div class="grid grid-cols-[60px_1fr] md:grid-cols-[80px_1fr] gap-4 md:gap-6">
-            <img
-              src="/logos/fedex.png"
-              alt="FedEx logo"
-              class="w-12 h-12 md:w-16 md:h-16 rounded object-contain bg-white p-1"
-              loading="lazy"
-            />
+            <img src="/logos/fedex.png" alt="FedEx logo" class="w-12 h-12 md:w-16 md:h-16 rounded object-contain bg-white p-1" loading="lazy" />
             <div class="space-y-3">
               <div class="flex justify-between items-baseline gap-4 flex-wrap">
                 <h3 class="text-xl md:text-2xl font-serif">FedEx</h3>
-                <p class="text-xs tracking-widest text-stone-500 font-mono whitespace-nowrap">
-                  2018 — 2019
-                </p>
+                <p class="text-xs tracking-widest text-stone-500 font-mono whitespace-nowrap">2018 — 2019</p>
               </div>
-              <p class="text-xs tracking-widest text-stone-500 uppercase font-mono">
-                Logistics · Supply Chain
-              </p>
+              <p class="text-xs tracking-widest text-stone-500 uppercase font-mono">Logistics · Supply Chain</p>
               <div class="text-sm pt-2">
-                <span class="text-stone-200"
-                  >Industrial Engineer</span
-                >
+                <span class="text-stone-200">Industrial Engineer</span>
               </div>
             </div>
           </div>
         </div>
       </section>
+
       <!-- § 04 PRINCIPLES -->
       <section id="principles" class="pt-12 border-t border-stone-800">
         <div class="grid grid-cols-1 md:grid-cols-[12rem_1fr] gap-6 md:gap-12 mb-10">
@@ -476,51 +458,36 @@ const lastUpdated = "May 2026";
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 md:gap-5">
           <div class="space-y-3">
             <p class="text-stone-500 font-serif italic text-xl">i.</p>
-            <h3 class="text-lg font-serif leading-snug min-h-[3.5rem]">
-              Outcomes &gt; process.
-            </h3>
+            <h3 class="text-lg font-serif leading-snug min-h-[3.5rem]">Outcomes &gt; process.</h3>
             <p class="text-stone-400 text-sm leading-relaxed">
-              Fast, focused teams ship better products and deliver tangible results.
-              I sit at the intersection of structure and fluidity that keeps everyone
-              on the path toward our North Star.
+              Fast, focused teams ship better products and deliver tangible results. I sit at the intersection of structure and fluidity that keeps everyone on the path toward our North Star.
             </p>
           </div>
           <div class="space-y-3">
             <p class="text-stone-500 font-serif italic text-xl">ii.</p>
-            <h3 class="text-lg font-serif leading-snug min-h-[3.5rem]">
-              Seek to understand.
-            </h3>
+            <h3 class="text-lg font-serif leading-snug min-h-[3.5rem]">Seek to understand.</h3>
             <p class="text-stone-400 text-sm leading-relaxed">
-              The &ldquo;Why&rdquo; before the &ldquo;How.&rdquo; Curious enough to
-              dive into the technical architecture, experienced enough to know when
-              to step aside. I dig until I get to the roots.
+              The &ldquo;Why&rdquo; before the &ldquo;How.&rdquo; Curious enough to dive into the technical architecture, experienced enough to know when to step aside. I dig until I get to the roots.
             </p>
           </div>
           <div class="space-y-3">
             <p class="text-stone-500 font-serif italic text-xl">iii.</p>
-            <h3 class="text-lg font-serif leading-snug min-h-[3.5rem]">
-              Strategic partner.
-            </h3>
+            <h3 class="text-lg font-serif leading-snug min-h-[3.5rem]">Strategic partner.</h3>
             <p class="text-stone-400 text-sm leading-relaxed">
-              As the bridge between engineering, operations, and executives, I nurture
-              influence rather than authority. A TPM moves the needle, but a strategic
-              partner moves mountains.
+              As the bridge between engineering, operations, and executives, I nurture influence rather than authority. A TPM moves the needle, but a strategic partner moves mountains.
             </p>
           </div>
           <div class="space-y-3">
             <p class="text-stone-500 font-serif italic text-xl">iv.</p>
-            <h3 class="text-lg font-serif leading-snug min-h-[3.5rem]">
-              Perfect is the enemy of done.
-            </h3>
+            <h3 class="text-lg font-serif leading-snug min-h-[3.5rem]">Perfect is the enemy of done.</h3>
             <p class="text-stone-400 text-sm leading-relaxed">
-              Relentless pursuit of perfection prevents implementing value. Chasing
-              flawless execution almost always leads to bottlenecks, missed
-              opportunities, or wasted efforts.
+              Relentless pursuit of perfection prevents implementing value. Chasing flawless execution almost always leads to bottlenecks, missed opportunities, or wasted efforts.
             </p>
           </div>
         </div>
-      </section> 
-       <!-- § 06 CONTACT -->
+      </section>
+
+      <!-- § 06 CONTACT -->
       <section id="contact" class="pt-12 border-t border-stone-800">
         <div class="grid grid-cols-1 md:grid-cols-[12rem_1fr] gap-6 md:gap-12 mb-10">
           <p class="text-xs tracking-[0.3em] text-stone-500 uppercase font-mono pt-2">
@@ -536,168 +503,91 @@ const lastUpdated = "May 2026";
           </div>
         </div>
 
-        <!-- Icon buttons -->
         <div class="flex gap-4 pt-2">
-          <!-- LinkedIn -->
-          <a
-            href="https://linkedin.com/in/jackyyu1993"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="LinkedIn"
-            class="group flex items-center justify-center w-14 h-14 rounded-full border border-stone-700 hover:border-amber-400 hover:bg-stone-900 transition"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="currentColor"
-              class="w-5 h-5 text-stone-400 group-hover:text-amber-400 transition"
-            >
-              <path
-                d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.063 2.063 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"
-              />
+          <a href="https://linkedin.com/in/jackyyu1993" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="group flex items-center justify-center w-14 h-14 rounded-full border border-stone-700 hover:border-amber-400 hover:bg-stone-900 transition">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 text-stone-400 group-hover:text-amber-400 transition">
+              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.063 2.063 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
             </svg>
           </a>
-
-          <!-- GitHub -->
-          <a
-            href="https://github.com/jackyyu93"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="GitHub"
-            class="group flex items-center justify-center w-14 h-14 rounded-full border border-stone-700 hover:border-amber-400 hover:bg-stone-900 transition"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="currentColor"
-              class="w-5 h-5 text-stone-400 group-hover:text-amber-400 transition"
-            >
-              <path
-                d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"
-              />
+          <a href="https://github.com/jackyyu93" target="_blank" rel="noopener noreferrer" aria-label="GitHub" class="group flex items-center justify-center w-14 h-14 rounded-full border border-stone-700 hover:border-amber-400 hover:bg-stone-900 transition">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 text-stone-400 group-hover:text-amber-400 transition">
+              <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
             </svg>
           </a>
-
-          <!-- Email -->
-          <a
-            href="mailto:jackyyu93@gmail.com"
-            aria-label="Email"
-            class="group flex items-center justify-center w-14 h-14 rounded-full border border-stone-700 hover:border-amber-400 hover:bg-stone-900 transition"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="1.8"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              class="w-5 h-5 text-stone-400 group-hover:text-amber-400 transition"
-            >
+          <a href="https://mail.google.com/mail/?view=cm&fs=1&to=jackyyu93@gmail.com" target="_blank" rel="noopener noreferrer" aria-label="Email" class="group flex items-center justify-center w-14 h-14 rounded-full border border-stone-700 hover:border-amber-400 hover:bg-stone-900 transition">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-stone-400 group-hover:text-amber-400 transition">
               <rect x="2" y="4" width="20" height="16" rx="2" />
               <path d="m22 6-10 7L2 6" />
             </svg>
           </a>
         </div>
 
-        <!-- Location + Availability as quiet metadata below -->
         <dl class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-6 max-w-xl text-sm">
           <div>
-            <dt class="text-xs tracking-widest text-stone-500 uppercase font-mono">
-              Location
-            </dt>
+            <dt class="text-xs tracking-widest text-stone-500 uppercase font-mono">Location</dt>
             <dd class="text-stone-300 mt-1">Austin, Texas</dd>
           </div>
           <div>
-            <dt class="text-xs tracking-widest text-stone-500 uppercase font-mono">
-              Availability
-            </dt>
+            <dt class="text-xs tracking-widest text-stone-500 uppercase font-mono">Availability</dt>
             <dd class="text-stone-300 mt-1">Open to new opportunities</dd>
           </div>
         </dl>
       </section>
     </main>
 
-    <footer
-      class="max-w-5xl mx-auto px-6 py-12 border-t border-stone-800 mt-16 flex flex-col md:flex-row justify-between gap-2 text-xs text-stone-500 tracking-widest uppercase font-mono"
-    >
+    <footer class="max-w-5xl mx-auto px-6 py-12 border-t border-stone-800 mt-16 flex flex-col md:flex-row justify-between gap-2 text-xs text-stone-500 tracking-widest uppercase font-mono">
       <p>© 2026 · Jacky Yu · Built with care</p>
       <p>Last updated · {lastUpdated}</p>
     </footer>
 
     <script>
-      // Theme toggle: dark default, localStorage persistence, sun/moon icon swap
+      // Theme toggle
       (function () {
         const STORAGE_KEY = 'theme';
         const root = document.documentElement;
         const toggle = document.getElementById('theme-toggle');
-        const sunIcon = document.querySelector('.theme-icon-sun');
-        const moonIcon = document.querySelector('.theme-icon-moon');
-
-        function applyTheme(theme) {
-          if (theme === 'light') {
-            root.classList.add('light');
-            if (sunIcon) sunIcon.classList.add('hidden');
-            if (moonIcon) moonIcon.classList.remove('hidden');
-          } else {
-            root.classList.remove('light');
-            if (sunIcon) sunIcon.classList.remove('hidden');
-            if (moonIcon) moonIcon.classList.add('hidden');
-          }
-        }
-
-        // Read saved theme, default to dark
-        const saved = localStorage.getItem(STORAGE_KEY);
-        applyTheme(saved === 'light' ? 'light' : 'dark');
 
         if (toggle) {
           toggle.addEventListener('click', () => {
             const isLight = root.classList.contains('light');
             const next = isLight ? 'dark' : 'light';
-            applyTheme(next);
+            if (next === 'light') {
+              root.classList.add('light');
+            } else {
+              root.classList.remove('light');
+            }
             try {
               localStorage.setItem(STORAGE_KEY, next);
-            } catch (e) {
-              // localStorage unavailable; theme will reset on next load, harmless
-            }
+            } catch (e) {}
           });
         }
       })();
 
-      // Rotating word effect (unchanged)
+      // Rotating word effect
       (function () {
         const words = ['operations', 'engineering', 'enterprise', 'security', 'strategy'];
         const container = document.querySelector('.rotating-word');
         if (!container) return;
-
         const measure = container.querySelector('.rotating-word__measure');
-
         const prefersReduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         if (prefersReduce) return;
 
         let idx = 0;
         setInterval(() => {
           idx = (idx + 1) % words.length;
-
-          const current = container.querySelector(
-            '.rotating-word__item:not(.rotating-word__item--exit)'
-          );
+          const current = container.querySelector('.rotating-word__item:not(.rotating-word__item--exit)');
           if (!current) return;
-
           if (measure) measure.textContent = words[idx];
-
           const next = document.createElement('span');
           next.className = 'rotating-word__item rotating-word__item--enter';
           next.textContent = words[idx];
           container.appendChild(next);
-
           requestAnimationFrame(() => {
             requestAnimationFrame(() => {
               current.classList.add('rotating-word__item--exit');
               next.classList.remove('rotating-word__item--enter');
             });
           });
-
           setTimeout(() => current.remove(), 700);
         }, 2500);
       })();
