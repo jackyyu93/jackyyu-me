@@ -58,6 +58,42 @@ const lastUpdated = "May 2026";
         background-color: rgb(251 191 36 / 0.3);
         color: rgb(245 245 244);
       }
+
+      /* Rotating word effect (hero) */
+      .rotating-word {
+        display: inline-block;
+        vertical-align: bottom;
+        overflow: hidden;
+        height: 1.05em;
+        position: relative;
+        min-width: 7em;
+        text-align: left;
+      }
+
+      .rotating-word__item {
+        display: inline-block;
+        transition:
+          transform 500ms cubic-bezier(0.5, 0, 0.5, 1),
+          opacity 500ms ease;
+      }
+
+      .rotating-word__item--exit {
+        transform: translateY(-110%);
+        opacity: 0;
+      }
+
+      .rotating-word__item--enter {
+        position: absolute;
+        inset: 0;
+        transform: translateY(110%);
+        opacity: 0;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .rotating-word__item {
+          transition: none;
+        }
+      }
     </style>
   </head>
 
@@ -106,13 +142,11 @@ const lastUpdated = "May 2026";
           <!-- Headline + tagline + CTAs: text flows around floated portrait -->
           <div class="space-y-8 md:space-y-10">
             <h1
-              class="text-4xl md:text-5xl lg:text-[3.5rem] font-serif leading-[1.1] tracking-tight"
+              class="text-4xl md:text-5xl lg:text-[3.5rem] font-serif leading-[1.05] tracking-tight"
             >
-              <span class="block">Delivering value at the <em
-                class="italic text-amber-400">crossroads</em
-              > of</span>
+              <span class="block">Delivering value at the crossroads of</span>
               <span class="block">AI, automation</span>
-              <span class="block">&amp; operations.</span>
+              <span class="block">&amp; <span class="rotating-word italic text-amber-400" aria-live="polite" aria-atomic="true"><span class="rotating-word__item">operations</span></span>.</span>
             </h1>
 
             <p class="text-base md:text-lg text-stone-300 leading-relaxed font-mono">
@@ -517,5 +551,40 @@ const lastUpdated = "May 2026";
       <p>© 2026 · Jacky Yu · Built with care</p>
       <p>Last updated · {lastUpdated}</p>
     </footer>
+
+    <script>
+      (function () {
+        const words = ['operations', 'engineering', 'enterprise', 'security', 'strategy'];
+        const container = document.querySelector('.rotating-word');
+        if (!container) return;
+
+        const prefersReduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (prefersReduce) return;
+
+        let idx = 0;
+        setInterval(() => {
+          idx = (idx + 1) % words.length;
+
+          const current = container.querySelector(
+            '.rotating-word__item:not(.rotating-word__item--exit)'
+          );
+          if (!current) return;
+
+          const next = document.createElement('span');
+          next.className = 'rotating-word__item rotating-word__item--enter';
+          next.textContent = words[idx];
+          container.appendChild(next);
+
+          requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+              current.classList.add('rotating-word__item--exit');
+              next.classList.remove('rotating-word__item--enter');
+            });
+          });
+
+          setTimeout(() => current.remove(), 700);
+        }, 2500);
+      })();
+    </script>
   </body>
 </html>
