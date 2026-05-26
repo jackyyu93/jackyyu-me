@@ -64,21 +64,21 @@ const lastUpdated = "May 2026";
         position: relative;
         display: inline-block;
         vertical-align: baseline;
-        overflow: hidden;
-        padding-bottom: 0.15em; /* room for descenders (y, p, g) */
+        overflow: visible; /* allow descenders to show */
       }
 
-      /* Invisible measure word: reserves width + sets baseline */
+      /* Invisible measure word: reserves width + establishes baseline */
       .rotating-word__measure {
         visibility: hidden;
         white-space: nowrap;
+        display: inline-block;
       }
 
-      /* Animated words overlay on top of the measure word */
+      /* Animated words overlay on top of the measure word, anchored at baseline */
       .rotating-word__item {
         position: absolute;
         left: 0;
-        top: 0;
+        bottom: 0;
         white-space: nowrap;
         transition:
           transform 500ms cubic-bezier(0.5, 0, 0.5, 1),
@@ -86,12 +86,12 @@ const lastUpdated = "May 2026";
       }
 
       .rotating-word__item--exit {
-        transform: translateY(-110%);
+        transform: translateY(-100%);
         opacity: 0;
       }
 
       .rotating-word__item--enter {
-        transform: translateY(110%);
+        transform: translateY(100%);
         opacity: 0;
       }
 
@@ -148,11 +148,12 @@ const lastUpdated = "May 2026";
           <!-- Headline + tagline + CTAs: text flows around floated portrait -->
           <div class="space-y-8 md:space-y-10">
             <h1
-              class="text-4xl md:text-5xl lg:text-[3.5rem] font-serif leading-[1.05] tracking-tight"
+              class="text-4xl md:text-5xl lg:text-[3.5rem] font-serif leading-[1.15] tracking-tight"
             >
-              <span class="block">Delivering value at the crossroads of</span>
+              <span class="block">Delivering value at</span>
+              <span class="block">the crossroads of</span>
               <span class="block">AI, automation</span>
-              <span class="block">&amp; <span class="rotating-word italic text-amber-400" aria-live="polite" aria-atomic="true"><span class="rotating-word__measure" aria-hidden="true">operations</span><span class="rotating-word__item">operations</span></span>.</span>
+              <span class="block">&amp; <span class="rotating-word italic text-amber-400" aria-live="polite" aria-atomic="true"><span class="rotating-word__measure" aria-hidden="true">operations</span><span class="rotating-word__item">operations</span></span></span>
             </h1>
 
             <p class="text-base md:text-lg text-stone-300 leading-relaxed font-mono">
