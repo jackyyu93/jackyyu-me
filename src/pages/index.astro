@@ -5,7 +5,6 @@ const meta = {
   url: "https://jackyyu.me",
 };
 
-const lastUpdated = "May 2026";
 ---
 
 <!doctype html>
@@ -249,12 +248,14 @@ const lastUpdated = "May 2026";
         border-color: var(--accent);
       }
 
-      /* About cards — theme-aware */
-      .about-card {
+      /* About + Impact cards — theme-aware */
+      .about-card,
+      .impact-card {
         background-color: var(--card-bg);
         border: 1px solid var(--card-border);
       }
-      .about-card:hover {
+      .about-card:hover,
+      .impact-card:hover {
         border-color: var(--accent);
         box-shadow: 0 0 0 1px var(--accent-glow);
       }
@@ -305,10 +306,6 @@ const lastUpdated = "May 2026";
     <main class="max-w-5xl mx-auto px-6 py-16 md:py-24 space-y-32 md:space-y-40">
       <!-- HERO -->
       <section id="hero" class="space-y-10 md:space-y-12">
-        <p class="text-sm md:text-base tracking-[0.3em] uppercase font-mono whitespace-nowrap overflow-x-auto" style="color: var(--text-faint);">
-          J01 · TECHNICAL PROGRAM MANAGER · AUSTIN, TEXAS
-        </p>
-
         <div class="lg:clearfix">
           <div class="relative mb-8 lg:mb-4 lg:float-right lg:ml-12 lg:w-[24rem] w-full max-w-sm mx-auto lg:mx-0">
             <img
@@ -459,46 +456,84 @@ const lastUpdated = "May 2026";
             Numbers from the last <em class="italic text-amber-400">five years</em>.
           </h2>
         </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-stone-800">
-          <div class="bg-stone-950 p-8 space-y-3">
-            <p class="text-xs tracking-widest text-stone-500 uppercase font-mono">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+
+          <!-- Card 1: Core Cyber AI · Cloudflare -->
+          <div class="impact-card group p-7 rounded-lg transition">
+            <p class="text-xs tracking-[0.25em] text-stone-500 uppercase font-mono">
               Core Cyber AI · Cloudflare
             </p>
-            <p class="text-5xl md:text-6xl font-serif italic text-amber-400">97%</p>
-            <p class="text-stone-300 text-sm leading-relaxed">
-              Reduction in monthly AI related incidents. AI Governance institutionalized through thoughtful guard rails. Coding agents secured by default.
-            </p>
+            <p class="text-5xl md:text-6xl font-serif italic text-amber-400 mt-3 mb-4">97%</p>
+            <p class="font-serif text-base leading-snug mb-4" style="color: var(--text);">Reduction in monthly AI-related incidents.</p>
+            <ul class="space-y-2.5">
+              <li class="flex gap-2 text-sm leading-relaxed" style="color: var(--text-muted);">
+                <span class="text-amber-400 select-none mt-0.5">▷</span>
+                <span>Built AI Governance program from zero — guardrails, review process, coding-agent controls.</span>
+              </li>
+              <li class="flex gap-2 text-sm leading-relaxed" style="color: var(--text-muted);">
+                <span class="text-amber-400 select-none mt-0.5">▷</span>
+                <span>Reduced monthly incidents from 176 to 5 across 12 months.</span>
+              </li>
+            </ul>
           </div>
 
-          <div class="bg-stone-950 p-8 space-y-3">
-            <p class="text-xs tracking-widest text-stone-500 uppercase font-mono">
+          <!-- Card 2: M&A Security · Cloudflare -->
+          <div class="impact-card group p-7 rounded-lg transition">
+            <p class="text-xs tracking-[0.25em] text-stone-500 uppercase font-mono">
               M&amp;A Security · Cloudflare
             </p>
-            <p class="text-5xl md:text-6xl font-serif italic text-amber-400">$1.5B+</p>
-            <p class="text-stone-300 text-sm leading-relaxed">
-              AI acquisitions integrated into Cloudflare&rsquo;s security perimeter. 70% (8→3 months) timeline acceleration and 80% (740→150 hours) effort reduction.
-            </p>
+            <p class="text-5xl md:text-6xl font-serif italic text-amber-400 mt-3 mb-4">$1.5B+</p>
+            <p class="font-serif text-base leading-snug mb-4" style="color: var(--text);">AI acquisitions integrated into Cloudflare&rsquo;s security perimeter.</p>
+            <ul class="space-y-2.5">
+              <li class="flex gap-2 text-sm leading-relaxed" style="color: var(--text-muted);">
+                <span class="text-amber-400 select-none mt-0.5">▷</span>
+                <span>Integrated multiple AI acquisitions worth $1.5B+ into the security perimeter.</span>
+              </li>
+              <li class="flex gap-2 text-sm leading-relaxed" style="color: var(--text-muted);">
+                <span class="text-amber-400 select-none mt-0.5">▷</span>
+                <span>Cut integration timeline 8 &rarr; 3 months (70%) and effort 740 &rarr; 150 hours (80%).</span>
+              </li>
+            </ul>
           </div>
 
-          <div class="bg-stone-950 p-8 space-y-3">
-            <p class="text-xs tracking-widest text-stone-500 uppercase font-mono">
+          <!-- Card 3: Digital Transformation · Straumann Group -->
+          <div class="impact-card group p-7 rounded-lg transition">
+            <p class="text-xs tracking-[0.25em] text-stone-500 uppercase font-mono">
               Digital Transformation · Straumann Group
             </p>
-            <p class="text-5xl md:text-6xl font-serif italic text-amber-400">V1.0</p>
-            <p class="text-stone-300 text-sm leading-relaxed">
-              Enabled virtual patient care for Dental providers through shipping flagship mobile app. 25,000+ downloads within 6 months.
-            </p>
+            <p class="text-5xl md:text-6xl font-serif italic text-amber-400 mt-3 mb-4">V1.0</p>
+            <p class="font-serif text-base leading-snug mb-4" style="color: var(--text);">Enabled virtual patient care for dental providers.</p>
+            <ul class="space-y-2.5">
+              <li class="flex gap-2 text-sm leading-relaxed" style="color: var(--text-muted);">
+                <span class="text-amber-400 select-none mt-0.5">▷</span>
+                <span>Shipped flagship mobile app enabling virtual care for dental providers.</span>
+              </li>
+              <li class="flex gap-2 text-sm leading-relaxed" style="color: var(--text-muted);">
+                <span class="text-amber-400 select-none mt-0.5">▷</span>
+                <span>25,000+ downloads within 6 months of launch.</span>
+              </li>
+            </ul>
           </div>
 
-          <div class="bg-stone-950 p-8 space-y-3">
-            <p class="text-xs tracking-widest text-stone-500 uppercase font-mono">
+          <!-- Card 4: Capital Projects · Atmos Energy -->
+          <div class="impact-card group p-7 rounded-lg transition">
+            <p class="text-xs tracking-[0.25em] text-stone-500 uppercase font-mono">
               Capital Projects · Atmos Energy
             </p>
-            <p class="text-5xl md:text-6xl font-serif italic text-amber-400">$80M</p>
-            <p class="text-stone-300 text-sm leading-relaxed">
-              Capital portfolio executed as the company&rsquo;s first hybrid Project Manager x Engineer.
-            </p>
+            <p class="text-5xl md:text-6xl font-serif italic text-amber-400 mt-3 mb-4">$80M</p>
+            <p class="font-serif text-base leading-snug mb-4" style="color: var(--text);">Capital portfolio executed across multi-year construction.</p>
+            <ul class="space-y-2.5">
+              <li class="flex gap-2 text-sm leading-relaxed" style="color: var(--text-muted);">
+                <span class="text-amber-400 select-none mt-0.5">▷</span>
+                <span>First hybrid Project Manager &times; Engineer role in company history.</span>
+              </li>
+              <li class="flex gap-2 text-sm leading-relaxed" style="color: var(--text-muted);">
+                <span class="text-amber-400 select-none mt-0.5">▷</span>
+                <span>Delivered $80M capital portfolio across multi-year construction projects.</span>
+              </li>
+            </ul>
           </div>
+
         </div>
       </section>
 
@@ -618,11 +653,11 @@ const lastUpdated = "May 2026";
         </div>
       </section>
 
-      <!-- § 06 CONTACT -->
+      <!-- § 05 CONTACT -->
       <section id="contact" class="pt-12 border-t border-stone-800">
         <div class="grid grid-cols-1 md:grid-cols-[12rem_1fr] gap-6 md:gap-12 mb-10">
           <p class="text-xs tracking-[0.3em] text-stone-500 uppercase font-mono pt-2">
-            § 06 — Contact
+            § 05 — Contact
           </p>
           <div class="space-y-6">
             <h2 class="text-3xl md:text-4xl lg:text-5xl font-serif leading-tight">
@@ -667,8 +702,8 @@ const lastUpdated = "May 2026";
     </main>
 
     <footer class="max-w-5xl mx-auto px-6 py-12 border-t border-stone-800 mt-16 flex flex-col md:flex-row justify-between gap-2 text-xs text-stone-500 tracking-widest uppercase font-mono">
-      <p>© 2026 · Jacky Yu · Built with care</p>
-      <p>Last updated · {lastUpdated}</p>
+      <p>© 2026 · Jacky Yu</p>
+      <p>Built with Astro on Cloudflare Workers</p>
     </footer>
 
     <script>
