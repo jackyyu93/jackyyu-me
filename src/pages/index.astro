@@ -211,6 +211,37 @@ const lastUpdated = "May 2026";
       :root.light .hover\:text-amber-400:hover { color: var(--accent) !important; }
       :root.light .hover\:border-amber-400:hover { border-color: var(--accent) !important; }
       :root.light .hover\:bg-amber-400:hover { background-color: var(--accent) !important; }
+
+      /* Back-to-top floating button */
+      .back-to-top {
+        position: fixed;
+        bottom: 1.5rem;
+        right: 1.5rem;
+        width: 3rem;
+        height: 3rem;
+        border-radius: 9999px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: var(--bg-elevated);
+        border: 1px solid var(--border-strong);
+        color: var(--text-muted);
+        backdrop-filter: blur(8px);
+        opacity: 0;
+        pointer-events: none;
+        transform: translateY(8px);
+        transition: opacity 250ms ease, transform 250ms ease, color 200ms ease, border-color 200ms ease;
+        z-index: 40;
+      }
+      .back-to-top--visible {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateY(0);
+      }
+      .back-to-top:hover {
+        color: var(--accent);
+        border-color: var(--accent);
+      }
     </style>
   </head>
 
@@ -277,15 +308,14 @@ const lastUpdated = "May 2026";
           </div>
 
           <div class="space-y-8 md:space-y-10">
-            <h1 class="text-4xl md:text-5xl lg:text-[3.5rem] font-serif leading-[1.15] tracking-tight">
-              <span class="block">Delivering value at</span>
-              <span class="block">the crossroads of</span>
-              <span class="block">AI, automation</span>
-              <span class="block">&amp; <span class="rotating-word italic text-amber-400" aria-live="polite" aria-atomic="true"><span class="rotating-word__measure" aria-hidden="true">operations</span><span class="rotating-word__item">operations</span></span></span>
-            </h1>
+            <h1 class="font-sans font-black uppercase tracking-tight leading-[0.95] text-5xl md:text-6xl lg:text-7xl" style="color: var(--text);">Jacky Yu</h1>
+
+            <h2 class="text-xl md:text-2xl lg:text-3xl font-serif leading-snug tracking-tight" style="color: var(--text-muted);">
+              Delivering value at the crossroads of AI, automation &amp; <span class="rotating-word italic text-amber-400" aria-live="polite" aria-atomic="true"><span class="rotating-word__measure" aria-hidden="true">operations</span><span class="rotating-word__item">operations</span></span>.
+            </h2>
 
             <p class="text-base md:text-lg leading-relaxed font-mono" style="color: var(--text-muted);">
-              Force multiplier and Technical Program Manager with 8+ years leading digital transformation, integrating AI acquisitions, and turning chaos into compounding momentum. Currently at Cloudflare.
+              Force multiplier and seasoned Technical leader with 8+ years leading digital transformation, driving AI and enterprise technology initiatives, and building the foundations that let world-class teams move fast and deliver at scale. Currently at Cloudflare.
             </p>
 
             <div class="flex flex-wrap gap-4 pt-2">
@@ -311,13 +341,92 @@ const lastUpdated = "May 2026";
                 I&rsquo;m a Force Multiplier and Technical Program Manager working at the intersection of AI, automation &amp; operations. My 8+ years of experience includes integrating cutting edge AI acquisitions and bootstrapping the Core Cyber AI division at Cloudflare, pioneering digital transformation at Straumann Group, and overhauling operational excellence at FedEx. I previously led a life as an Industrial Engineer where I leaned into Lean, specializing in always improving and continually getting better.
               </p>
               <p>
-                A few things I care about deeply: fostering great relationships and building high performing teams, seeking to understand the &ldquo;Why&rdquo; to drive the &ldquo;How,&rdquo; and moving fast in environments where clarity and outcomes are more valuable than process. I&rsquo;m inherently tool agnostic, which has allowed me to not just use tools but to utilize them. As AI transforms the digital landscape, I focus my efforts on how to deliver value in an era where the baseline capabilities of software are changing quickly.
-              </p>
-              <p>
-                Outside of work I spend time with my best friend &amp; wife, serving at the beck and call of our golden, and filling my days with fishing, woodworking, cooking, camping, and learning.
+                A few things I care about deeply: fostering great relationships and building high performing teams, seeking to understand the &ldquo;Why&rdquo; to drive the &ldquo;How,&rdquo; and moving fast in environments where clarity and outcomes are more valuable than process. As AI transforms the digital landscape, I focus my efforts on how to deliver value in an era where the baseline capabilities of software are changing quickly.
               </p>
             </div>
           </div>
+        </div>
+
+        <!-- About: 3-card grid -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mt-12">
+
+          <!-- Education -->
+          <div class="about-card group p-6 rounded-lg border border-stone-800 bg-stone-900/40 transition hover:border-amber-400 hover:shadow-[0_0_0_1px_rgba(251,191,36,0.25)]">
+            <div class="flex items-center gap-3 mb-5">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-stone-400 group-hover:text-amber-400 transition">
+                <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+                <path d="M6 12v5c3 3 9 3 12 0v-5"/>
+              </svg>
+              <p class="text-xs tracking-[0.25em] uppercase font-mono text-stone-500">Education</p>
+            </div>
+            <ul class="space-y-4">
+              <li>
+                <p class="font-serif text-base leading-snug" style="color: var(--text);">BS in Industrial Engineering</p>
+                <p class="text-xs text-stone-500 font-mono mt-1">Texas Tech University</p>
+              </li>
+              <li>
+                <p class="font-serif text-base leading-snug" style="color: var(--text);">Minor in Mathematics</p>
+                <p class="text-xs text-stone-500 font-mono mt-1">Texas Tech University</p>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Certifications -->
+          <div class="about-card group p-6 rounded-lg border border-stone-800 bg-stone-900/40 transition hover:border-amber-400 hover:shadow-[0_0_0_1px_rgba(251,191,36,0.25)]">
+            <div class="flex items-center gap-3 mb-5">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-stone-400 group-hover:text-amber-400 transition">
+                <circle cx="12" cy="8" r="6"/>
+                <path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/>
+              </svg>
+              <p class="text-xs tracking-[0.25em] uppercase font-mono text-stone-500">Certifications</p>
+            </div>
+            <ul class="space-y-4">
+              <li>
+                <p class="font-serif text-sm leading-snug" style="color: var(--text);">Project Management Professional (PMP®)</p>
+                <p class="text-xs text-stone-500 font-mono mt-1">PMI.org</p>
+              </li>
+              <li>
+                <p class="font-serif text-sm leading-snug" style="color: var(--text);">Prompt Engineering for Project Managers</p>
+                <p class="text-xs text-stone-500 font-mono mt-1">PMI.org</p>
+              </li>
+              <li>
+                <p class="font-serif text-sm leading-snug" style="color: var(--text);">Generative AI Overview for Project Managers</p>
+                <p class="text-xs text-stone-500 font-mono mt-1">PMI.org</p>
+              </li>
+              <li>
+                <p class="font-serif text-sm leading-snug" style="color: var(--text);">Six Sigma Green Belt</p>
+                <p class="text-xs text-stone-500 font-mono mt-1">Institute of Industrial &amp; Systems Engineers</p>
+              </li>
+              <li>
+                <p class="font-serif text-sm leading-snug" style="color: var(--text);">Scrum Fundamentals Certified (SFC)</p>
+                <p class="text-xs text-stone-500 font-mono mt-1">Vabro.ai</p>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Fun Facts -->
+          <div class="about-card group p-6 rounded-lg border border-stone-800 bg-stone-900/40 transition hover:border-amber-400 hover:shadow-[0_0_0_1px_rgba(251,191,36,0.25)]">
+            <div class="flex items-center gap-3 mb-5">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-stone-400 group-hover:text-amber-400 transition">
+                <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
+              </svg>
+              <p class="text-xs tracking-[0.25em] uppercase font-mono text-stone-500">Fun Facts</p>
+            </div>
+            <ul class="space-y-2.5 text-sm" style="color: var(--text-muted);">
+              <li class="flex gap-2"><span class="text-amber-400">·</span><span>Woodworker</span></li>
+              <li class="flex gap-2"><span class="text-amber-400">·</span><span>Youth-league baseball coach</span></li>
+              <li class="flex gap-2"><span class="text-amber-400">·</span><span>BBQ pitmaster</span></li>
+              <li class="flex gap-2"><span class="text-amber-400">·</span><span>Outdoorsman: fishing, hiking, camping</span></li>
+              <li class="flex gap-2"><span class="text-amber-400">·</span><span>Bilingual: English &amp; Mandarin</span></li>
+              <li class="flex gap-2"><span class="text-amber-400">·</span><span>Born in China (ask me where!)</span></li>
+              <li class="flex gap-2"><span class="text-amber-400">·</span><span>Christmas Day birthday</span></li>
+              <li class="flex gap-2"><span class="text-amber-400">·</span><span>Backpacked across SE Asia</span></li>
+              <li class="flex gap-2"><span class="text-amber-400">·</span><span>Patent holder</span></li>
+              <li class="flex gap-2"><span class="text-amber-400">·</span><span>Golden retriever dad</span></li>
+              <li class="flex gap-2"><span class="text-amber-400">·</span><span>Central Austin Toastmasters</span></li>
+            </ul>
+          </div>
+
         </div>
       </section>
 
@@ -593,6 +702,27 @@ const lastUpdated = "May 2026";
           });
           setTimeout(() => current.remove(), 700);
         }, 2500);
+      })();
+    </script>
+    <!-- Back to top button -->
+    <button id="back-to-top" type="button" aria-label="Back to top" class="back-to-top">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
+        <path d="M12 19V5"/>
+        <path d="m5 12 7-7 7 7"/>
+      </svg>
+    </button>
+
+    <script>
+      (function () {
+        const btn = document.getElementById('back-to-top');
+        if (!btn) return;
+        const onScroll = () => {
+          if (window.scrollY > 600) btn.classList.add('back-to-top--visible');
+          else btn.classList.remove('back-to-top--visible');
+        };
+        window.addEventListener('scroll', onScroll, { passive: true });
+        btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+        onScroll();
       })();
     </script>
   </body>
