@@ -259,6 +259,18 @@ const meta = {
         border-color: var(--accent);
         box-shadow: 0 0 0 1px var(--accent-glow);
       }
+      /* Acquisition hyperlinks in Impact bullets */
+      .acq-link {
+        color: var(--accent);
+        text-decoration: underline;
+        text-decoration-color: var(--card-border);
+        text-decoration-thickness: 1px;
+        text-underline-offset: 3px;
+        transition: text-decoration-color 200ms ease;
+      }
+      .acq-link:hover {
+        text-decoration-color: var(--accent);
+      }
     </style>
   </head>
 
@@ -297,6 +309,7 @@ const meta = {
 
           <a href="#about" class="nav-link">About</a>
           <a href="#impact" class="nav-link">Impact</a>
+          <a href="#work" class="nav-link">Work</a>
           <a href="#experience" class="nav-link">Experience</a>
           <a href="#contact" class="nav-link">Contact</a>
         </div>
@@ -332,7 +345,7 @@ const meta = {
             </h2>
 
             <p class="text-base md:text-lg leading-relaxed font-mono" style="color: var(--text-muted);">
-              Force multiplier and seasoned Technical leader with 8+ years leading digital transformation, driving AI and enterprise technology initiatives, and building the foundations that let world-class teams move fast and deliver at scale. Currently at Cloudflare.
+              Force multiplier and seasoned Technical leader with 8+ years leading digital transformation, driving AI and enterprise initiatives, and building the foundations that let world-class teams move fast and deliver at scale.
             </p>
 
             <div class="flex flex-wrap gap-4 pt-2">
@@ -351,14 +364,14 @@ const meta = {
           </p>
           <div class="space-y-8">
             <h2 class="text-3xl md:text-4xl lg:text-5xl font-serif leading-tight">
-              <em class="italic text-amber-400">Who</em> I am, <em class="italic text-amber-400">what</em> I do best, and <em class="italic text-amber-400">how</em> I live.
+              <em class="italic text-amber-400">Who</em> I am and <em class="italic text-amber-400">what</em> I do best.
             </h2>
             <div class="space-y-5 text-stone-300 leading-relaxed">
               <p>
-                I&rsquo;m a Force Multiplier and Technical Program Manager working at the intersection of AI, automation &amp; operations. My 8+ years of experience includes integrating cutting edge AI acquisitions and bootstrapping the Core Cyber AI division at Cloudflare, pioneering digital transformation at Straumann Group, and overhauling operational excellence at FedEx. I previously led a life as an Industrial Engineer where I leaned into Lean, specializing in always improving and continually getting better.
+                I&rsquo;m an executive operator and tech leader who thrives at the intersection of strategy, AI innovation, and organizational leadership. My 8+ years of experience spans integrating cutting edge AI acquisitions and bootstrapping the Core Cyber AI division at Cloudflare, leading digital transformation at Straumann Group, and overhauling operational excellence at FedEx. I previously led a life as an Industrial Engineer where I leaned into Lean, specializing in always improving and continually getting better.
               </p>
               <p>
-                A few things I care about deeply: fostering great relationships and building high performing teams, seeking to understand the &ldquo;Why&rdquo; to drive the &ldquo;How,&rdquo; and moving fast in environments where clarity and outcomes are more valuable than process. As AI transforms the digital landscape, I focus my efforts on how to deliver value in an era where the baseline capabilities of software are changing quickly.
+                A few things I care about deeply: fostering great relationships and building high performing teams, understanding the &ldquo;Why&rdquo; to drive the &ldquo;How,&rdquo; and moving fast in environments where clarity and outcomes are more valuable than process. As AI transforms the digital landscape, I focus my efforts on how to deliver value in an era where the baseline capabilities of software are changing quickly.
               </p>
             </div>
           </div>
@@ -437,7 +450,6 @@ const meta = {
               <li><p class="font-serif text-sm leading-snug" style="color: var(--text);">Youth-league baseball coach</p></li>
               <li><p class="font-serif text-sm leading-snug" style="color: var(--text);">BBQ pitmaster</p></li>
               <li><p class="font-serif text-sm leading-snug" style="color: var(--text);">Outdoorsman: fishing, hiking, camping</p></li>
-              <li><p class="font-serif text-sm leading-snug" style="color: var(--text);">Bilingual: English &amp; Mandarin</p></li>
               <li><p class="font-serif text-sm leading-snug" style="color: var(--text);">Born in China <span class="text-xs text-stone-500 font-mono">(ask me where!)</span></p></li>
               <li><p class="font-serif text-sm leading-snug" style="color: var(--text);">Christmas Day birthday</p></li>
               <li><p class="font-serif text-sm leading-snug" style="color: var(--text);">Backpacked across SE Asia</p></li>
@@ -476,7 +488,7 @@ const meta = {
               </li>
               <li class="flex gap-2 text-sm leading-relaxed" style="color: var(--text-muted);">
                 <span class="text-amber-400 select-none mt-0.5">▷</span>
-                <span>Reduced monthly incidents from 176 to 5 across 12 months.</span>
+                <span>Reduced monthly average incidents from 176 to 5.</span>
               </li>
             </ul>
           </div>
@@ -491,7 +503,7 @@ const meta = {
             <ul class="space-y-2.5">
               <li class="flex gap-2 text-sm leading-relaxed" style="color: var(--text-muted);">
                 <span class="text-amber-400 select-none mt-0.5">▷</span>
-                <span>Integrated multiple AI acquisitions worth $1.5B+ into the security perimeter.</span>
+                <span>Integrated multiple AI acquisitions worth $1.5B+ (<a href="https://blog.cloudflare.com/why-replicate-joining-cloudflare/" target="_blank" rel="noopener noreferrer" class="acq-link">Replicate</a>, <a href="https://blog.cloudflare.com/human-native-joins-cloudflare/" target="_blank" rel="noopener noreferrer" class="acq-link">Human Native</a>, <a href="https://blog.cloudflare.com/astro-joins-cloudflare/" target="_blank" rel="noopener noreferrer" class="acq-link">Astro</a>, <a href="https://blog.cloudflare.com/voidzero-joins-cloudflare/" target="_blank" rel="noopener noreferrer" class="acq-link">VoidZero</a>).</span>
               </li>
               <li class="flex gap-2 text-sm leading-relaxed" style="color: var(--text-muted);">
                 <span class="text-amber-400 select-none mt-0.5">▷</span>
@@ -510,7 +522,7 @@ const meta = {
             <ul class="space-y-2.5">
               <li class="flex gap-2 text-sm leading-relaxed" style="color: var(--text-muted);">
                 <span class="text-amber-400 select-none mt-0.5">▷</span>
-                <span>Shipped flagship mobile app enabling virtual care for dental providers.</span>
+                <span>Shipped flagship mobile app in an agile environment.</span>
               </li>
               <li class="flex gap-2 text-sm leading-relaxed" style="color: var(--text-muted);">
                 <span class="text-amber-400 select-none mt-0.5">▷</span>
@@ -529,11 +541,11 @@ const meta = {
             <ul class="space-y-2.5">
               <li class="flex gap-2 text-sm leading-relaxed" style="color: var(--text-muted);">
                 <span class="text-amber-400 select-none mt-0.5">▷</span>
-                <span>First hybrid Project Manager &times; Engineer role in company history.</span>
+                <span>Executed 12+ projects concurrently for Fortune 100 clients.</span>
               </li>
               <li class="flex gap-2 text-sm leading-relaxed" style="color: var(--text-muted);">
                 <span class="text-amber-400 select-none mt-0.5">▷</span>
-                <span>Delivered $80M capital portfolio across multi-year construction projects.</span>
+                <span>Onboarded as company&rsquo;s first hybrid Project Manager &times; Engineer.</span>
               </li>
             </ul>
           </div>
@@ -541,11 +553,62 @@ const meta = {
         </div>
       </section>
 
-      <!-- § 03 EXPERIENCE -->
+      <!-- § 03 SELECTED WORK -->
+      <section id="work" class="pt-12 border-t border-stone-800">
+        <div class="grid grid-cols-1 md:grid-cols-[12rem_1fr] gap-6 md:gap-12 mb-10">
+          <p class="text-xs tracking-[0.3em] text-stone-500 uppercase font-mono pt-2">
+            § 03 — Selected Work
+          </p>
+          <h2 class="text-3xl md:text-4xl lg:text-5xl font-serif leading-tight">
+            Selected <em class="italic text-amber-400">work</em>.
+          </h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+
+          <!-- Project 01 -->
+          <div class="impact-card group p-7 rounded-lg transition">
+            <p class="text-xs tracking-[0.25em] text-stone-500 uppercase font-mono">
+              Project 01
+            </p>
+            <p class="font-serif text-xl leading-snug mt-3" style="color: var(--text);">Coming soon.</p>
+            <p class="text-sm leading-relaxed mt-3" style="color: var(--text-muted);">Case study placeholder.</p>
+          </div>
+
+          <!-- Project 02 -->
+          <div class="impact-card group p-7 rounded-lg transition">
+            <p class="text-xs tracking-[0.25em] text-stone-500 uppercase font-mono">
+              Project 02
+            </p>
+            <p class="font-serif text-xl leading-snug mt-3" style="color: var(--text);">Coming soon.</p>
+            <p class="text-sm leading-relaxed mt-3" style="color: var(--text-muted);">Case study placeholder.</p>
+          </div>
+
+          <!-- Project 03 -->
+          <div class="impact-card group p-7 rounded-lg transition">
+            <p class="text-xs tracking-[0.25em] text-stone-500 uppercase font-mono">
+              Project 03
+            </p>
+            <p class="font-serif text-xl leading-snug mt-3" style="color: var(--text);">Coming soon.</p>
+            <p class="text-sm leading-relaxed mt-3" style="color: var(--text-muted);">Case study placeholder.</p>
+          </div>
+
+          <!-- Project 04 -->
+          <div class="impact-card group p-7 rounded-lg transition">
+            <p class="text-xs tracking-[0.25em] text-stone-500 uppercase font-mono">
+              Project 04
+            </p>
+            <p class="font-serif text-xl leading-snug mt-3" style="color: var(--text);">Coming soon.</p>
+            <p class="text-sm leading-relaxed mt-3" style="color: var(--text-muted);">Case study placeholder.</p>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- § 04 EXPERIENCE -->
       <section id="experience" class="pt-12 border-t border-stone-800">
         <div class="grid grid-cols-1 md:grid-cols-[12rem_1fr] gap-6 md:gap-12 mb-10">
           <p class="text-xs tracking-[0.3em] text-stone-500 uppercase font-mono pt-2">
-            § 03 — Experience
+            § 04 — Experience
           </p>
           <h2 class="text-3xl md:text-4xl lg:text-5xl font-serif leading-tight">
             A <em class="italic text-amber-400">chronology</em>.
@@ -619,11 +682,11 @@ const meta = {
         </div>
       </section>
 
-      <!-- § 04 PRINCIPLES -->
+      <!-- § 05 PRINCIPLES -->
       <section id="principles" class="pt-12 border-t border-stone-800">
         <div class="grid grid-cols-1 md:grid-cols-[12rem_1fr] gap-6 md:gap-12 mb-10">
           <p class="text-xs tracking-[0.3em] text-stone-500 uppercase font-mono pt-2">
-            § 04 — Principles
+            § 05 — Principles
           </p>
           <h2 class="text-3xl md:text-4xl lg:text-5xl font-serif leading-tight">
             <em class="italic text-amber-400">Core</em> tenets.
@@ -657,23 +720,23 @@ const meta = {
         </div>
       </section>
 
-      <!-- § 05 CONTACT -->
+      <!-- § 06 CONTACT -->
       <section id="contact" class="pt-12 border-t border-stone-800">
         <div class="grid grid-cols-1 md:grid-cols-[12rem_1fr] gap-6 md:gap-12 mb-10">
           <p class="text-xs tracking-[0.3em] text-stone-500 uppercase font-mono pt-2">
-            § 05 — Contact
+            § 06 — Contact
           </p>
           <div class="space-y-6">
-            <h2 class="text-3xl md:text-4xl lg:text-5xl font-serif leading-tight">
-              Get in <em class="italic text-amber-400">touch</em>.
-            </h2>
-            <p class="text-stone-300 max-w-xl leading-relaxed">
-              Open to new opportunities and, as always, continually improving.
+            <p class="text-base md:text-lg leading-relaxed" style="color: var(--text-muted);">
+              Interested in collaboration, speaking opportunities, or just want to say hi?
             </p>
+            <h2 class="text-3xl md:text-4xl lg:text-5xl font-serif leading-tight">
+              Let&rsquo;s <em class="italic text-amber-400">connect</em>.
+            </h2>
           </div>
         </div>
 
-        <div class="flex gap-4 pt-2">
+        <div class="flex justify-center gap-4 pt-6">
           <a href="https://linkedin.com/in/jackyyu1993" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="group flex items-center justify-center w-14 h-14 rounded-full border border-stone-700 hover:border-amber-400 hover:bg-stone-900 transition">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 text-stone-400 group-hover:text-amber-400 transition">
               <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.063 2.063 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
@@ -692,16 +755,6 @@ const meta = {
           </a>
         </div>
 
-        <dl class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-6 max-w-xl text-sm">
-          <div>
-            <dt class="text-xs tracking-widest text-stone-500 uppercase font-mono">Location</dt>
-            <dd class="text-stone-300 mt-1">Austin, Texas</dd>
-          </div>
-          <div>
-            <dt class="text-xs tracking-widest text-stone-500 uppercase font-mono">Availability</dt>
-            <dd class="text-stone-300 mt-1">Open to new opportunities</dd>
-          </div>
-        </dl>
       </section>
     </main>
 
